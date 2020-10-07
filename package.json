@@ -1,0 +1,24 @@
+{
+  "name": "ncrypt",
+  "version": "1.0.0",
+  "description": "op",
+  "main": "index.js",
+  "dependencies": {
+    "tailwindcss": "^1.8.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build:css": "tailwind build Tool/src/style.css -o Tool/static/styles/style.css "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tijilchhabra1729/ncrypt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tijilchhabra1729/ncrypt/issues"
+  },
+  "homepage": "https://github.com/tijilchhabra1729/ncrypt#readme"
+}
