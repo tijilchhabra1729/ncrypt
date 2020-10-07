@@ -1,4 +1,4 @@
-{%extends "base.html"%} {%block content%}
+{%extends "base.htm"%} {%block content%}
 <br /><br /><br /><br /><br /><br />
 
 <div class="container">
@@ -34,7 +34,7 @@
             </div>
             <div class="group">
               {{form.picture}} {%if
-            form.picture.errors%}  {%for error in form.picture.errors%}
+            form.picture.errors%} {%for error in form.picture.errors%}
               <small class="text-danger">{{error}}</small>
               {%endfor%} {%endif%}
             </div>
