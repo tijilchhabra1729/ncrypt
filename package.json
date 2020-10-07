@@ -4,11 +4,12 @@
   "description": "op",
   "main": "index.js",
   "dependencies": {
+    "tailwind": "^4.0.0",
     "tailwindcss": "^1.8.11"
   },
   "devDependencies": {},
   "scripts": {
-    "build:css": "tailwind build Tool/src/style.css -o Tool/static/styles/style.css "
+    "build:css": "tailwind build Tool/src/style.css -o Tool/static/styles/style.css"
   },
   "repository": {
     "type": "git",

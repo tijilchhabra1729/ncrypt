@@ -3,8 +3,8 @@
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  padding:0 180px;
-  
+  padding:0 140px;
+  color :#636363;
 }
 
 
@@ -16,7 +16,6 @@ body {
 
 .page h1  {
   position: relative;
-  font-weight: 800;
   font-size:6em;
   padding-top:30vh;
   justify-content: center;
@@ -65,33 +64,14 @@ body {
 	font-family: 'Poppins',sans-serif;
 	z-index: 1;
 }
-.goog-te-combo{
-  background-color:rgba(64, 65, 65, 0.911);
-  color: white;
-  border-radius:25px;
-  padding: 5px ;
-}
-#goog-gt-tt.skiptranslate{
-  display: none !important ;
-}
-.goog-te-banner-frame.skiptranslate, .skiptranslate {
-  display: inline-block !important;
-}
-.goog-logo-link {
-   display:none !important;
-} 
 .main-footer{
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   bottom: 0;
-  flex: 1;
+  z-index: 1;
 }
 
-.goog-te-gadget{
-   color: transparent !important;
-   /* display: none !important; */
-}
 .card-bg{
   background-color: #edf0f4;
 }
@@ -110,7 +90,7 @@ hgroup {
 	margin-top: 4em;
 }
 
-h1 { color: #636363; }
+/* h1 { color: #4b4a4a; } */
 
 
 form {
@@ -176,7 +156,7 @@ input:focus { outline: none; }
 input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
-	color: #83A739;
+	color: #38B2AC;
 }
 
 
@@ -193,7 +173,7 @@ input:focus ~ label, input.used ~ label {
 	width: 0;
 	bottom: 1px; 
 	position: absolute;
-	background: #83A739; 
+	background: #38B2AC; 
 	transition: all 0.2s ease;
 }
 
@@ -225,7 +205,7 @@ input:focus ~ .highlight {
 
 
 @keyframes inputHighlighter {
-	from { background: #83A739; }
+	from { background: #38B2AC; }
 	to 	{ width: 0; background: transparent; }
 }
 
@@ -246,7 +226,7 @@ input:focus ~ .highlight {
   letter-spacing: 1px;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid #83A739;
+  border-bottom: 2px solid #38B2AC;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -256,20 +236,20 @@ input:focus ~ .highlight {
 /* Button modifiers */
 
 .buttonBlue {
-  background: #83A739;
+  background: #38B2AC;
   text-shadow: 1px 1px 0 rgba(189, 226, 120, 0.5);
 }
 
-.buttonBlue:hover { background: #7daa22; }
+.buttonBlue:hover { background: #2C7A7B; }
 
 .btn-primary{
-  background-color: #83A739;
-  border-color: #83A739;
+  background-color: #38B2AC;
+  border-color: #38B2AC;
 }
 
 .btn-primary:hover{
-  background-color: #556b29;
-  border-color: #556b29;
+  background-color: #2C7A7B;
+  border-color: #2C7A7B;
 }
 @media screen and (max-width: 1100px) {
   body{

@@ -1,11 +1,11 @@
-{%extends 'base.html'%} {%block content%}
+{%extends 'base.htm'%} {%block content%}
 <div class="container">
   <div class="row justify-content-center">
     <div class="col">
       <br>
 
-      <form method="POST" enctype="multipart/form-data" class="col-sm-7">
-        <h1 class="head">Register</h1>
+      <form method="POST" enctype="multipart/form-data" class="col-sm-7 p-10">
+        <h1 class="head py-4">Register</h1>
         {{form.hidden_tag()}}
         <div class="group">
           {{form.name}}
@@ -15,7 +15,7 @@
 
         <div class="group">
           {{form.email}}
-           <span class="highlight"></span><span class="bar"></span>
+          <span class="highlight"></span><span class="bar"></span>
           <label>Email</label>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           {%if form.email.errors%} {%for error in form.email.errors%}
