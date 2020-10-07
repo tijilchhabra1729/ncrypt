@@ -8,7 +8,7 @@ from sqlalchemy import desc, asc
 
 @app.route('/' , methods = ['GET' , 'POST'])
 def index():
-    return render_template("index.html")
+    return render_template("index.htm")
 
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():

@@ -1,0 +1,38 @@
+{%extends 'base.htm'%}
+
+{%block content%}
+<center>
+<div style="background-color: white; padding: 3%; width: 50%;display: flex;margin: 3%; border-radius: 20px;">
+  <!-- <img src="{{url_for('static', filename="scrum_board.png")}}" style="width: 50%; float: left;" alt="img"> -->
+<div style="margin-left: 3%; float: right;  align-items: center; justify-content: center;" 
+class="container col" align = center>
+
+  <h1>Make Project </h1><br><br>
+  <form  method="POST">
+    {{form.hidden_tag()}}
+    <div class="form-group">
+      <small class = 'text-danger'></small>
+      {{form.name.label}}{{form.name(class = 'form-control col-md-10' ,placeholder="Project Name" )}}
+      <small id="emailHelp" class="form-text text-muted">Enter a Good name.</small>
+      {%if form.name.errors%}
+        {%for error in form.name.errors%}
+          <small class = 'text-danger'>{{error}}</small>
+        {%endfor%}
+      {%endif%}
+    </div><br>
+    <div class="form-group">
+      {{form.description.label}}{{form.description(class = 'form-control col-md-10' ,placeholder="Describe your project" )}}
+    </div>
+    {%if form.description.errors%}
+      {%for error in form.description.errors%}
+        <small class = 'text-danger'>{{error}}</small>
+      {%endfor%}
+    {%endif%}
+
+    <div class="form-group">
+      {{form.submit(class ="btn btn-primary submit")}}
+    </div>
+  </form>
+</div>
+</center>
+{%endblock%}

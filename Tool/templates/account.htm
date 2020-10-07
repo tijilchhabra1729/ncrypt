@@ -1,0 +1,52 @@
+{%extends "base.html"%} {%block content%}
+<br /><br /><br /><br /><br /><br />
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-7">
+      <div class="card card-bg">
+        <h4 class="card-title">
+          <div align="center">
+            <h1 class="head">Welcome, {{current_user.username}}</h1>
+        </h4>
+        <div>
+          <center>
+            <img src="{{profile_image}}" class="card-img-top img-fluid" alt="Card image" style="width: 40vw;" />
+          </center>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+            <div class="group1">
+              <label>Username</label>
+              {{form.username}} {%if
+            form.username.errors%} {%for error in form.username.errors%}
+              <small class="text-danger">{{error}}</small>
+              {%endfor%} {%endif%}
+            </div>
+            <div class="group1">
+              <label>Email</label>
+              {{form.email}}
+              {%if form.email.errors%}
+              {%for error in form.email.errors%}
+              <small class="text-danger">{{error}}</small>
+              {%endfor%} {%endif%}
+            </div>
+            <div class="group">
+              {{form.picture}} {%if
+            form.picture.errors%} {%for error in form.picture.errors%}
+              <small class="text-danger">{{error}}</small>
+              {%endfor%} {%endif%}
+            </div>
+            <div class="form-group">
+              {{form.submit(class = 'btn btn-primary change')}}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{%endblock%}

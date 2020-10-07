@@ -1,0 +1,30 @@
+{%extends 'base.htm'%}
+{%block content%}
+<div class="cover" style="justify-content: center !important; align-items: center !important;">
+<div class="task">
+    <a href="{{url_for('maketask' , projectid = projectid)}}">
+  <div id="add-task" class="box">
+Add task</div></a>
+
+  {%for p in tasks%}
+
+  <div class="box using">
+    <a href="{{url_for('task' , task_id = p.id)}}" onclick="toggle()" >
+    <h6 style="text-transform: uppercase;">{{p.name}}</h6><br>
+    Description <br><br> </a>
+    {%if p.completed == na or p.completed == nas%}
+        <a href="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Status :&#10060;</a>
+    {%else%}
+       <a href="{{url_for('change' , to = 'No' , task_id = p.id)}}">  Status :&#10004;&#65039;</a>
+    {%endif%}
+  </div>
+
+  {%endfor%}
+
+
+</div>
+</div>
+
+
+
+{%endblock%}

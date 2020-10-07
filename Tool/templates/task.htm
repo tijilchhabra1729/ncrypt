@@ -1,0 +1,19 @@
+{%extends 'base.htm'%}
+{%block content%}
+
+<center>
+<div style=" background-color: white;width: 45%; padding-top: 3%;padding-bottom: 3%; 
+  align-items: center !important; justify-content: center !important; display: flex;
+  margin: 3%;">
+    
+  <div style="margin-left: 1%; align-items: center; justify-content: center; float: right; padding-left: 3em;" 
+  align = center>
+  <h1>{{task.name}} </h1>
+  <br>
+  <h3>Description: {{task.description}} </h3>
+  <br>
+  Status :  {{Status}}
+</div>
+</div>
+</center>
+{%endblock%}

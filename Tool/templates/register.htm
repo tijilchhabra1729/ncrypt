@@ -1,0 +1,64 @@
+{%extends 'base.html'%} {%block content%}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+      <br>
+
+      <form method="POST" enctype="multipart/form-data" class="col-sm-7">
+        <h1 class="head">Register</h1>
+        {{form.hidden_tag()}}
+        <div class="group">
+          {{form.name}}
+          <span class="highlight"></span><span class="bar"></span>
+          <label>Full Name</label>
+        </div>
+
+        <div class="group">
+          {{form.email}}
+          <span class="highlight"></span><span class="bar"></span>
+          <label>Email</label>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          {%if form.email.errors%} {%for error in form.email.errors%}
+          <small class="text-danger">{{error}}</small>
+          {%endfor%} {%endif%}
+        </div>
+        <div class="group">
+          {{form.username}}<span class="highlight"></span><span class="bar"></span>
+          <label>Username</label>
+          <small id="emailHelp" class="form-text text-muted">It should be unique</small>
+          {%if form.username.errors%} {%for error in form.username.errors%}
+          <small class="text-danger">{{error}}</small>
+          {%endfor%} {%endif%}
+        </div>
+        <div class="group">
+          {{form.password}}<span class="highlight"></span><span class="bar"></span>
+          <label>Password</label>
+          {%if form.password.errors%} {%for error in
+             form.password.errors%}
+          <small class="text-danger">{{error}}</small>
+          {%endfor%} {%endif%}
+        </div>
+        <div class="group">
+          {{form.pass_confirm}} <span class="highlight"></span><span class="bar"></span>
+          <label>Re-Enter password</label>{%if
+      form.pass_confirm.errors%} {%for error in form.pass_confirm.errors%}
+          <small class="text-danger">{{error}}</small>
+          {%endfor%} {%endif%}
+        </div>
+        <div class="group">
+          {{form.picture}}
+          {%if
+      form.picture.errors%} {%for error in form.picture.errors%} <small class="text-danger">{{error}}</small>
+          {%endfor%} {%endif%}
+        </div>
+
+        <div class="form-group" style="margin-top: 3%">
+          {{form.submit(class ="btn btn-primary ")}}
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{%endblock%}
