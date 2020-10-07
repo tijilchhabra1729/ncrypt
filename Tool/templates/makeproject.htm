@@ -4,7 +4,7 @@
 <center>
 <div style="background-color: white; padding: 3%; width: 50%;display: flex;margin: 3%; border-radius: 20px;">
   <!-- <img src="{{url_for('static', filename="scrum_board.png")}}" style="width: 50%; float: left;" alt="img"> -->
-<div style="margin-left: 3%; float: right;  align-items: center; justify-content: center;" 
+<div style="margin-left: 3%; float: right;  align-items: center; justify-content: center;"
 class="container col" align = center>
 
   <h1>Make Project </h1><br><br>
@@ -17,7 +17,7 @@ class="container col" align = center>
       {%if form.name.errors%}
         {%for error in form.name.errors%}
           <small class = 'text-danger'>{{error}}</small>
-        {%endfor%}
+         {%endfor%}
       {%endif%}
     </div><br>
     <div class="form-group">

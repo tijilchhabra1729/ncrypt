@@ -7,7 +7,7 @@
   <a href="{{url_for('makeproject')}}">Add Project</a></div>
   {%for p in projects%}
   <div class="proj used" style="background-color: white;">
-    <img src="{{url_for('static', filename="notes.png")}}" style="width: 16vw;" alt="can't load">
+     <img src="{{url_for('static', filename="notes.png")}}" style="width: 16vw;" alt="can't load">
     <a style="padding:0.5em;" href="{{url_for('tasks' , projectid = p.id)}}">{{p.name}} - {{p.description}}</a>
   </div>
   {%endfor%}
