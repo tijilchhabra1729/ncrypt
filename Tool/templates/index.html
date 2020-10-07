@@ -1,0 +1,84 @@
+{% extends "base.html" %} {% block content %}
+<div>
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-sm-7 align-self-center page">
+                <h1>Oorja</h1>
+                <br>
+                <p>Great Power. Great Times.</p>
+
+            </div>
+            <div class="col-sm-5 align-self-center page">
+
+                <img src="{{ url_for('static', filename='bulb.png') }}" class="img-fluid mr-auto hell" alt="">
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <a id="abt_us"></a>
+        <h1 class="hding">About Us</h1>
+        <div class="container">
+
+            <div class="row justify-content-end">
+                <div class="col-sm-5">
+                    <img src="{{url_for('static', filename='solar.png')}}" class="img-fluid  ml-auto"
+                        alt="Responsive image" style="height: 50vh;">
+                </div>
+                <div class="col-sm-7">
+                    <p class="abt-text">Between 2000 and 2019, the number of people with electricity increased from 78
+                        to 87 percent, and
+                        the
+                        numbers
+                        without electricity dipped to just below one billion. Yet, as the population continues to grow,
+                        so
+                        will
+                        the
+                        demand for cheap energy, and an economy reliant on fossil fuels is creating drastic changes to
+                        our
+                        climate.
+                        Thus, investing in alternate and natural sources and ensuring energy for all is vital.
+                        <br><br>
+                        With one goal in mind- ‘to ensure reliable and continuous power supply and to provide
+                        electricity to
+                        each
+                        and
+                        every household’ we, at URJA have developed an innovative way to generate electricity and light
+                        up
+                        our
+                        homes
+                        from urine, creating an affordable, renewable and carbon-neutral way of generating power.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br><br><br><br>
+    <div class="container ">
+        <div class="row justify-content-end">
+            <div class="col">
+                <h1 id="pro" class="hding">Product</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-xl-6 col-lg-12">
+                    <div class="card crd">
+                        <img src="{{ url_for('static', filename = 'pro1.png') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Cowsmos</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up
+                                the bulk
+                                of the card's content.</p>
+                            <a href="{{url_for('pay')}}" class="btn btn-primary">Buy here</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% endblock %}

@@ -1,0 +1,73 @@
+{%extends "base.html"%}
+{%block content%}
+<br><br><br><br><br><br>
+<div class="container jumbotron" id="account">
+  <div class="container " align ="center">
+    <form method="POST" action = "" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <div class="form-group">
+          {{form.name.label(class="form-group")}}
+          {{form.name(class="form-control col-md-6")}}
+          {%if form.name.errors%}
+            {%for error in form.name.errors%}
+              <small class = 'text-danger'>{{error}}</small>
+            {%endfor%}
+          {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.age.label(class="form-group")}}
+        {{form.age(class="form-control col-md-6")}}
+        {%if form.age.errors%}
+          {%for error in form.age.errors%}
+            <small class = 'text-danger'>{{error}}</small>
+          {%endfor%}
+        {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.urine.label(class="form-group")}}
+        {{form.urine(class="form-control col-md-6")}}
+        {%if form.urine.errors%}
+          {%for error in form.urine.errors%}
+            <small class = 'text-danger'>{{error}}</small>
+          {%endfor%}
+        {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.weight.label(class="form-group")}}
+        {{form.weight(class="form-control-file col-md-6")}}
+        {%if form.weight.errors%}
+          {%for error in form.weight.errors%}
+            <small class = 'text-danger'>{{error}}</small>
+          {%endfor%}
+        {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.submit(class = 'btn btn-primary')}}
+        <button type="button" class = "btn btn-danger" data-toggle = 'modal' data-target = "#del">Delete</button>
+        <div class="modal" tabindex="-1" role="dialog" id = "del">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Delete Rental!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+        <div class="modal-footer">
+          <a class = "btn btn-danger" href="{{url_for('delete' , id=id)}}"> Delete</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+</div>
+
+</div>
+
+
+
+
+{%endblock%}
