@@ -36,41 +36,12 @@ body {
   justify-content: center;
   align-content: center;
 }
-.crd {
-  padding: 1.5em;
-  margin: 0 20px;
-  border-color: transparent;
-  border-radius: 5px;
-  background-color: transparent;
-  transition: all ease-in-out 0.2s;
-  
-}
-.cr:hover{
-  
-  box-shadow: rgba(163, 177, 198, 0.6) 9px 9px 16px, rgba(255, 255, 255, 0.5) -9px -9px 16px;
-  transition: all ease-in-out 0.2s;
-}
+
 .container{
   padding-bottom: 15px;
  }
-.number{
-	position: absolute;	
-	font-size: 200px;
-	font-weight: 800;
-	opacity: 0.2;
-	color: #FF6967;
-	/* left: -20px; */
-	top: 270px;
-	font-family: 'Poppins',sans-serif;
-	z-index: 1;
-}
-.main-footer{
-  font-family: 'Montserrat', sans-serif;
-  display: flex;
-  flex-direction: column;
-  bottom: 0;
-  z-index: 1;
-}
+
+
 
 .card-bg{
   background-color: #edf0f4;
@@ -114,7 +85,7 @@ form {
 	position: relative; 
 	margin-bottom: 45px; 
 }
-input {
+input, textarea {
 	font-size: 18px;
 	padding: 10px 10px 10px 5px;
 	-webkit-appearance: none;
@@ -128,6 +99,7 @@ input {
 }
 
 input:focus { outline: none; }
+textarea:focus { outline: none; }
 
 
 
@@ -151,13 +123,21 @@ input:focus { outline: none; }
 	top: -15px;
 }
 
-
+a{
+  text-decoration: none;
+}
 
 input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
 	color: #38B2AC;
 }
+textarea:focus ~ label, textarea.used ~ label {
+	top: -20px;
+  transform: scale(.75); left: -2px;
+	color: #38B2AC;
+}
+
 
 
 
@@ -183,6 +163,7 @@ input:focus ~ label, input.used ~ label {
 
 
 input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+textarea:focus ~ .bar:before, textarea:focus ~ .bar:after { width: 50%; }
 
 
 
@@ -199,6 +180,9 @@ input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
 
 
 input:focus ~ .highlight {
+	animation: inputHighlighter 0.3s ease;
+}
+textarea:focus ~ .highlight {
 	animation: inputHighlighter 0.3s ease;
 }
 
@@ -294,4 +278,55 @@ input:focus ~ .highlight {
   body{
   		padding:0;
 	}
+}
+
+@media (max-width: 767px) {
+  .navicon {
+    width: 1.125em;
+    height: .125em;
+  }
+
+  .navicon::before,
+  .navicon::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all .2s ease-out;
+    content: '';
+    background: #3D4852;
+  }
+
+  .navicon::before {
+    top: 5px;
+  }
+
+  .navicon::after {
+    top: -5px;
+  }
+
+  .menu-btn:not(:checked) ~ .menu {
+    display: none;
+  }
+
+  .menu-btn:checked ~ .menu {
+    display: block;
+  }
+
+  .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+
+  .menu-btn:checked ~ .menu-icon .navicon::before {
+    transform: rotate(-45deg);
+  }
+
+  .menu-btn:checked ~ .menu-icon .navicon::after {
+    transform: rotate(45deg);
+  }
+
+  .menu-btn:checked ~ .menu-icon .navicon::before,
+  .menu-btn:checked ~ .menu-icon .navicon::after {
+    top: 0;
+  }
 }

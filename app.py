@@ -21,6 +21,7 @@ def index():
 def dashboard():
     return render_template("dashboard.htm")
 
+
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():
     form = RegistrationForm()

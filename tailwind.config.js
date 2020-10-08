@@ -19,7 +19,7 @@ module.exports = {
           'textsecon': '#c9c9c9',
         },
         sidebar: {
-          'primary': '#FFFFFF',
+          'primary': '#F7FAFC',
           'secondary': '#F7FAFC',
           'ternary': '#E6FFFA',
           'text': '#38B2AC',
