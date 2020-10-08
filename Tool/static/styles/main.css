@@ -122,9 +122,8 @@ textarea:focus { outline: none; }
 	left: 5px;
 	top: -15px;
 }
-
 a{
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 input:focus ~ label, input.used ~ label {

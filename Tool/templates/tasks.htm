@@ -7,11 +7,11 @@
         Add task</div>
     </a> -->
     <div class="container font-medium mx-auto row-auto p-6 xl:px-64 lg:px-32 md:px-24 sm:px-40 ">
-      <div class="justify-evenly flex-wrap md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 w-full flex ">
+      <div class="justify-between flex-wrap md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 w-full flex ">
         <a href="{{url_for('maketask' , projectid = projectid)}}"
           class="max-w-sm rounded-lg overflow-hidden shadow-lg max-h-full m-2 ">
           <div class="px-3 py-6 text-center">
-            <div class="font-bold text-5xl  text-gray-700 ">Add Project</div>
+            <div class="font-bold text-5xl  text-gray-700 ">Add task</div>
           </div>
         </a>
 
@@ -29,15 +29,21 @@
           <a href="{{url_for('change' , to = 'No' , task_id = p.id)}}"> Status :&#10004;&#65039;</a>
           {%endif%}
         </div> -->
-        <a class="max-w-sm rounded-lg shadow-lg overflow-scroll h-auto w-auto m-2"
+        <a class="max-w-sm rounded-lg shadow-lg overflow-scroll h-auto  m-2"
           href="{{url_for('tasks' , projectid = p.id)}}">
           <div class="px-6 py-4 row-auto flex-wrap">
-            <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">{{p.name}}
-              <br><br>
-              <p class="text-gray-600 text-base flex-wrap">{{p.description}}</p>
-            </div>
+            <div class=" font-bold text-xl mb-2 pr-4 text-gray-700"> {{p.name}} </div>
+            <br>
+            <p class="text-gray-600 text-base flex-wrap">{{p.description}}</p>
+            <br>
+            {%if p.completed == na or p.completed == nas%}
+            <a href="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Status :&#10060;</a>
+            {%else%}
+            <a href="{{url_for('change' , to = 'No' , task_id = p.id)}}"> Status :&#10004;&#65039;</a>
+            {%endif%}
           </div>
         </a>
+
         {%endfor%}
 
 
