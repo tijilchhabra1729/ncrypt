@@ -1,10 +1,18 @@
 from Tool import app, db
+import os
 from Tool.forms import RegistrationForm, LoginForm , ProjectForm , TaskForm , QueryForm
 from Tool.models import User , Project , Task
 from flask import render_template,request, url_for, redirect, flash ,abort
 from flask_login import current_user, login_required, login_user , logout_user
 from picture_handler import add_profile_pic
 from sqlalchemy import desc, asc
+from werkzeug.utils import secure_filename
+from flask import send_from_directory
+
+UPLOAD_FOLDER = '/static'
+ALLOWED_EXTENSIONS = {'csv'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/' , methods = ['GET' , 'POST'])
 def index():
@@ -135,24 +143,34 @@ def change(to , task_id):
         db.session.commit()
     return redirect(url_for('tasks' , projectid = project.id))
 
-@app.route('/query/<data_lines>')
-@login_required
-def query(data_lines):
-    return render_template('try.htm', data_lines=data_lines)
-
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/queryform', methods=['GET', 'POST'])
-@login_required
-def query_generator():
-    form = QueryForm()
-    data_lines = ["a"]
-    if form.validate_on_submit():
-        file = form.data_input.data
-        print(file)
-        print(data_lines)
-        return redirect('index')
-    return render_template('query.htm', form=form)
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save('Tool/static/csvs/'+'/'+filename)
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+    return render_template('query.htm')
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
 
 if __name__ == '__main__':
     app.run(debug = True)
