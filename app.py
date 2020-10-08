@@ -10,6 +10,11 @@ from sqlalchemy import desc, asc
 def index():
     return render_template("index.htm")
 
+
+@app.route('/dashboard' , methods = ['GET' , 'POST'])
+def dashboard():
+    return render_template("dashboard.htm")
+
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -50,7 +55,7 @@ def login():
 
             next = request.args.get('next')
             if next == None or not next[0] =='/':
-                next = url_for('index')
+                next = url_for('dashboard')
             return redirect(next)
         elif user is not None and user.check_password(form.password.data) == False:
             error = 'Wrong Password'
