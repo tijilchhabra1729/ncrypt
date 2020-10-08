@@ -159,10 +159,10 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             file.save('Tool/static/csvs/data.csv')
-            return redirect(url_for('uploaded_file'))
+            return redirect(url_for('index'))
     return render_template('query.htm')
 
-@app.route('/uploads')
+@app.route('/uploads', methods = ['GET' , 'POST'])
 def uploaded_file():
     return send_from_directory('Tool/static/csvs' , 'data.csv')
 
