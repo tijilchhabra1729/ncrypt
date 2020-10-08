@@ -9,10 +9,7 @@ from sqlalchemy import desc, asc
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 
-UPLOAD_FOLDER = '/static'
 ALLOWED_EXTENSIONS = {'csv'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/' , methods = ['GET' , 'POST'])
 def index():
@@ -161,16 +158,13 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save('Tool/static/csvs/'+'/'+filename)
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            file.save('Tool/static/csvs/data.csv')
+            return redirect(url_for('uploaded_file'))
     return render_template('query.htm')
 
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+@app.route('/uploads')
+def uploaded_file():
+    return send_from_directory('Tool/static/csvs' , 'data.csv')
 
 if __name__ == '__main__':
     app.run(debug = True)
