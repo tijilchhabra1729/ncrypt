@@ -1,3 +1,4 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "python.pythonPath": "/Users/moaksh/Documents/GitHub/ncrypt/env/bin/python3.8"
 }
