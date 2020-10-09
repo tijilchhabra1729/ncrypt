@@ -103,10 +103,6 @@ def projects():
     projects = Project.query.filter_by(userid = current_user.id)
     return render_template('projects.htm' , projects = projects)
 
-@app.route('/edit_project', methods = ['GET' , 'POST'])
-@login_required
-def edit_project():
-    return render_template('edit_project.htm' )
 
 @app.route('/maketask/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
