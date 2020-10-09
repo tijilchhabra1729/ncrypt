@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap');
-
+html{
+  min-height:100vh;
+}
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
