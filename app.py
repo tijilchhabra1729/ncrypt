@@ -154,14 +154,14 @@ def change(to , task_id):
     else:
         project.completed = 'Yes'
         db.session.commit()
-    return redirect(url_for('tasks' , projectid = project.id))
+    return redirect(url_for('edit_task' , projectid = project.id))
 @app.route('/del/task/<task_id>/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
 def del_task(task_id):
     task = Task.query.get(task_id , projectid)
     db.session.delete(task)
     db.session.commit()
-    return redirect(url_for('tasks' , projectid = projectid))
+    return redirect(url_for('edit_task' , projectid = projectid))
 
 @app.route('/del/project/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
