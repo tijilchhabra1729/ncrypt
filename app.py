@@ -22,10 +22,13 @@ def dashboard():
     return render_template("dashboard.htm")
 
 
-@app.route('/edit_task' , methods = ['GET' , 'POST'])
+@app.route('/edit_task/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
-def edit_task():
-    return render_template("edit_task.htm")
+def edit_task(projectid):
+        tasks = Task.query.filter_by(projectid = projectid)
+        na = 'No'
+        nas = 'NO'
+        return render_template("edit_task.htm" , tasks = tasks , projectid = projectid , na = na ,nas = nas)
 
 
 @app.route('/register' , methods = ['GET', 'POST'])
