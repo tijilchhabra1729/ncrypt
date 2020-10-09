@@ -29,6 +29,11 @@ def edit_task(projectid):
         na = 'No'
         nas = 'NO'
         return render_template("edit_task.htm" , tasks = tasks , projectid = projectid , na = na ,nas = nas)
+@app.route('/edit_project' , methods = ['GET' , 'POST'])
+@login_required
+def edit_project():
+    projects = Project.query.filter_by(userid = current_user.id)
+    return render_template('edit_project.htm' , projects = projects)
 
 
 @app.route('/register' , methods = ['GET', 'POST'])
@@ -158,7 +163,7 @@ def change(to , task_id):
 @app.route('/del/task/<task_id>/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
 def del_task(task_id):
-    task = Task.query.get(task_id , projectid)
+    task = Task.query.get(task_id)
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for('edit_task' , projectid = projectid))
