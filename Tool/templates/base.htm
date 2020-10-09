@@ -25,41 +25,6 @@
 </head>
 
 <body data-spy="scroll" data-target="#navbar" class="font-medium bg-gray-200">
-  <!-- <section class="nav-sty" style="padding-top:2vh;">
-    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-      <a class="navbar-brand bold" href="{{url_for('index')}}" style="color:#4b4a4a;"><b>Genie</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon appearance-none"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto nav-bg">
-          <li class=" nav-item ">
-            <a class=" nav-link" href="{{url_for('index')}}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#abt">About the app</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#feat">Features</a>
-          </li>
-
-          {%if current_user.is_authenticated%}
-          <li><a class="nav-link " href="{{url_for('projects')}}">Projects</a></li>
-          <li><a class="nav-link" href="{{ url_for('logout') }}">Logout, {{current_user.username}}</a></li>
-
-          {%else%}
-          <li>
-            <a class="nav-link nav-item " href="{{url_for('register')}}">Register</a>
-          </li>
-          <li>
-            <a class="nav-link nav-item " href="{{url_for('login')}}">Login</a>
-          </li>
-          {%endif%}
-        </ul>
-      </div>
-    </nav>
-  </section> -->
   <nav class="nav flex flex-wrap items-center justify-between py-4 px-2">
     <div class="flex flex-no-shrink items-center mr-6  text-grey-darkest">
       <span class=" text-xl tracking-tight font-bold" style="color:#4b4a4a;">Genie</span>

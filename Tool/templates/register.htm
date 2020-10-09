@@ -1,4 +1,6 @@
 {%extends 'base.htm'%} {%block content%}
+
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col">
@@ -8,22 +10,21 @@
         class="max-w-sm rounded overflow-hidden shadow-lg p-10 bg-gray-200">
         <h1 class="head py-4">Register</h1>
         {{form.hidden_tag()}}
-        <div class="group">
+        <div class="group  py-2 px-1">
           {{form.name}}
           <span class="highlight"></span><span class="bar"></span>
           <label>Full Name</label>
         </div>
-
-        <div class="group">
-          {{form.email}}
-          <span class="highlight"></span><span class="bar"></span>
+        <div class="group py-2 px-1">
+          {{form.email}}<span class="highlight"></span><span class="bar"></span>
           <label>Email</label>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+          <small id="emailHelp">We'll never share your email with anyone else.</small>
           {%if form.email.errors%} {%for error in form.email.errors%}
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group">
+        <div class="group  py-2 px-1">
           {{form.username}}<span class="highlight"></span><span class="bar"></span>
           <label>Username</label>
           <small id="emailHelp" class="form-text text-muted">It should be unique</small>
@@ -31,7 +32,7 @@
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group">
+        <div class="group  py-2 px-1">
           {{form.password}}<span class="highlight"></span><span class="bar"></span>
           <label>Password</label>
           {%if form.password.errors%} {%for error in
@@ -39,7 +40,7 @@
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group">
+        <div class="group py-2 px-1">
           {{form.pass_confirm}} <span class="highlight"></span><span class="bar"></span>
           <label>Re-Enter password</label>{%if
       form.pass_confirm.errors%} {%for error in form.pass_confirm.errors%}
@@ -47,7 +48,7 @@
           {%endfor%} {%endif%}
         </div>
         <div class="group">
-          {{form.picture}}
+          {{form.picture (class="appearance-none outline-none")}}
           {%if
       form.picture.errors%} {%for error in form.picture.errors%} <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}

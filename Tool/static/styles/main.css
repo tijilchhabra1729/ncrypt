@@ -43,18 +43,12 @@ body {
 
 
 
-.card-bg{
-  background-color: #edf0f4;
-}
 .abt-text{
   margin: 10px;
 }
 .hding{
   font-size:4em;
   font-weight: 800;
-}
-.img-fluid{
-  padding:10px;
 }
 hgroup { 
 	text-align:center;
@@ -125,7 +119,10 @@ textarea:focus { outline: none; }
 a{
   text-decoration: none !important;
 }
-
+.overflow-x-scroll::-webkit-scrollbar{
+  display: none;
+  scrollbar-width: none;
+}
 input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
