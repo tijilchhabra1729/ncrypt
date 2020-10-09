@@ -2,10 +2,7 @@
 {%block content%}
 
 <div class="task">
-  <!-- <a href="{{url_for('maketask' , projectid = projectid)}}">
-      <div id="add-task" class="box">
-        Add task</div>
-    </a> -->
+
 
   <div class="container font-medium mx-auto  p-6 xl:px-64 lg:px-32 md:px-24 sm:px-40 ">
     <div class="justify-center flex-wrap w-full flex  md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 ">
@@ -15,7 +12,7 @@
           <div class="font-bold text-5xl  text-gray-700 ">Add task</div>
         </div>
       </a> -->
-      <a onclick="history.back()"
+      <a href="{{url_for('tasks' , projectid = projectid)}}"
         class="m-3 fixed bottom-0 right-0  flex items-center justify-center h-12 w-12 rounded-full bg-teal-500 text-white">
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

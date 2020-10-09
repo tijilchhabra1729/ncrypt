@@ -187,7 +187,7 @@ def del_project(projectid):
     project = Project.query.get(projectid)
     db.session.delete(project)
     db.session.commit()
-    return redirect(url_for('projects'))
+    return redirect(url_for('edit_project'))
 
 
 def allowed_file(filename):

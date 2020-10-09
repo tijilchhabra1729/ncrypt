@@ -20,11 +20,11 @@
             </svg>
         </a>
         <div class="relative  h-auto border-8  max-w-sm rounded-lg shadow overflow-x-scroll m-2 container-fluid">
-            <div class="px-6 py-4 row-auto flex-wrap">
+            <div class="px-6 pt-6 row-auto flex-wrap">
                 <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">{{p.name}}
                     <br><br>
                     <p class="text-gray-600 text-base flex-wrap">{{p.description}}</p>
-                    <a href="{{url_for('del_project' , projectid = projectid)}} " class="mt-3 top-0 right-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-500
+                    <a href="{{url_for('del_project' , projectid = p.id)}} " class="mt-3 top-0 right-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-500
                     text-white">
                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
