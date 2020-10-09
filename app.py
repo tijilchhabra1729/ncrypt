@@ -146,6 +146,20 @@ def change(to , task_id):
         project.completed = 'Yes'
         db.session.commit()
     return redirect(url_for('tasks' , projectid = project.id))
+@app.route('/del/task/<task_id>/<projectid>' , methods = ['GET' , 'POST'])
+def del_task(task_id):
+    task = Task.query.get(task_id , projectid)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('tasks' , projectid = projectid))
+
+@app.route('del/project/<projectid>' , methods = ['GET' , 'POST'])
+@login_required
+def del_project(projectid):
+    project = Project.query.get(projectid)
+    db.session.delete(project)
+    db.session.commit()
+    return redirect(url_for('projects'))
 
 def allowed_file(filename):
     return '.' in filename and \
