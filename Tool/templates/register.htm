@@ -5,11 +5,12 @@
   <div class="row justify-content-center ">
     <br>
 
-    <form method="POST" enctype="multipart/form-data" class="rounded-xl overflow-hidden shadow-lg p-10 bg-gray-200 ">
-      <h1 class="head py-4">Register</h1>
+    <form method="POST" enctype="multipart/form-data"
+      class="w-2/4 rounded-lg overflow-hidden shadow-lg p-10 bg-gray-200 ">
+      <h1 class="text-5xl font-extrabold text-medium py-2">Register</h1>
       {{form.hidden_tag()}}
       <div>
-        <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
+        <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2" for="inline-full-name">
           Full Name
         </label>
       </div>
@@ -107,9 +108,10 @@
           {%endfor%} {%endif%}
         </div>
 
-        <div class="form-group" style="margin-top: 3%">
-          {{form.submit(class ="btn btn-primary ")}}
+        <div>
+          {{form.submit(class =" bg-teal-500 appearance-none outline-none hover:bg-teal-400 my-4 focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded")}}
         </div>
+
 
     </form>
   </div>
