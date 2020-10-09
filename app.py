@@ -22,6 +22,12 @@ def dashboard():
     return render_template("dashboard.htm")
 
 
+@app.route('/edit_task' , methods = ['GET' , 'POST'])
+@login_required
+def edit_task():
+    return render_template("edit_task.htm")
+
+
 @app.route('/register' , methods = ['GET', 'POST'])
 def register():
     form = RegistrationForm()
