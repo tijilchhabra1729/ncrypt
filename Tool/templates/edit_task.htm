@@ -9,18 +9,27 @@
 
   <div class="container font-medium mx-auto  p-6 xl:px-64 lg:px-32 md:px-24 sm:px-40 ">
     <div class="justify-center flex-wrap w-full flex  md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 ">
-      <a href="{{url_for('maketask' , projectid = projectid)}}"
+      <!-- <a href="{{url_for('maketask' , projectid = projectid)}}"
         class="max-w-sm rounded-lg overflow-hidden shadow max-h-full m-2 ">
         <div class="px-3 py-6 text-center">
           <div class="font-bold text-5xl  text-gray-700 ">Add task</div>
         </div>
+      </a> -->
+      <a href="{{url_for('del_task' , projectid = projectid , task_id = p.id)}}"
+        class="m-3 fixed bottom-0 right-0  flex items-center justify-center h-12 w-12 rounded-full bg-teal-500 text-white">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </a>
-
       {%for p in tasks%}
 
-      <div class="max-w-sm rounded-lg overflow-y-scroll shadow max-h-full m-2 ">
-        <div class="px-6 py-4 row-auto flex-wrap">
+      <div class="max-w-sm rounded-lg overflow-y-scroll shadow max-h-full m-2  container-fluid">
+
+        <div class="px-6 pt-4 row-auto flex-wrap">
+
           <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">
+            <div>
+            </div>
             <h6>{{p.name}}</h6>
           </div>
           <br>
@@ -45,6 +54,13 @@
             {%endif%}
           </div>
         </div>
+        <a href="{{url_for('del_project' , projectid = projectid)}}
+        " class="mb-3 mx-3 mt-2 top-0 right-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-500
+        text-white ">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </a>
       </div>
       {%endfor%}
     </div>
