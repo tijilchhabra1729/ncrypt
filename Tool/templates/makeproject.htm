@@ -8,10 +8,10 @@
       <form method="POST" class="max-w-md rounded overflow-hidden shadow-lg p-10 bg-gray-200">
         <h1 class="head px-10">Make Project </h1><br><br>
         {{form.hidden_tag()}}
-        <div class="group py-2">
+        <div class="group ">
           <small class='text-danger'></small>
           {{form.name}} <span class="highlight"></span><span class="bar"></span>
-          <label>Project Name</label><small id="emailHelp" class="form-text text-muted">Enter a Good
+          <label>Project Name</label><small id="emailHelp" class="form-text text-muted">Enter a Good short
             name.</small>
           {%if form.name.errors%}
           {%for error in form.name.errors%}

@@ -1,9 +1,9 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm , ProjectForm , TaskForm , QueryForm
-from Tool.models import User , Project , Task
-from flask import render_template,request, url_for, redirect, flash ,abort
-from flask_login import current_user, login_required, login_user , logout_user
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm
+from Tool.models import User, Project, Task
+from flask import render_template, request, url_for, redirect, flash, abort
+from flask_login import current_user, login_required, login_user, logout_user
 from picture_handler import add_profile_pic
 from sqlalchemy import desc, asc
 from werkzeug.utils import secure_filename
@@ -11,49 +11,54 @@ from flask import send_from_directory
 
 ALLOWED_EXTENSIONS = {'csv'}
 
-@app.route('/' , methods = ['GET' , 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template("index.htm")
 
 
-@app.route('/dashboard' , methods = ['GET' , 'POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     return render_template("dashboard.htm")
 
 
-@app.route('/edit_task/<projectid>' , methods = ['GET' , 'POST'])
+@app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
 @login_required
 def edit_task(projectid):
-        tasks = Task.query.filter_by(projectid = projectid)
-        na = 'No'
-        nas = 'NO'
-        return render_template("edit_task.htm" , tasks = tasks , projectid = projectid , na = na ,nas = nas)
-@app.route('/edit_project' , methods = ['GET' , 'POST'])
+    tasks = Task.query.filter_by(projectid=projectid)
+    na = 'No'
+    nas = 'NO'
+    return render_template("edit_task.htm", tasks=tasks, projectid=projectid, na=na, nas=nas)
+
+
+@app.route('/edit_project', methods=['GET', 'POST'])
 @login_required
 def edit_project():
-    projects = Project.query.filter_by(userid = current_user.id)
-    return render_template('edit_project.htm' , projects = projects)
+    projects = Project.query.filter_by(userid=current_user.id)
+    return render_template('edit_project.htm', projects=projects)
 
 
-@app.route('/register' , methods = ['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
 
-        user = User(name = form.name.data,
-                    username = form.username.data,
-                    email = form.email.data ,
-                    password = form.password.data)
+        user = User(name=form.name.data,
+                    username=form.username.data,
+                    email=form.email.data,
+                    password=form.password.data)
         db.session.add(user)
         db.session.commit()
         if form.picture.data is not None:
             id = user.id
-            pic = add_profile_pic(form.picture.data,id)
+            pic = add_profile_pic(form.picture.data, id)
             user.profile_image = pic
             db.session.commit()
         return redirect(url_for('login'))
-    return render_template('register.htm', form = form)
+    return render_template('register.htm', form=form)
+
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -61,7 +66,7 @@ def logout():
     return redirect(url_for("index"))
 
 
-@app.route('/login' , methods = ['GET' , 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     error = ''
@@ -69,42 +74,44 @@ def login():
 
         user = User.query.filter_by(email=form.email.data).first()
 
-        if user is not None and user.check_password(form.password.data) :
+        if user is not None and user.check_password(form.password.data):
 
             login_user(user)
             flash('Log in Success!')
 
             next = request.args.get('next')
-            if next == None or not next[0] =='/':
+            if next == None or not next[0] == '/':
                 next = url_for('dashboard')
             return redirect(next)
         elif user is not None and user.check_password(form.password.data) == False:
             error = 'Wrong Password'
         elif user is None:
             error = 'No such login Pls create one'
-    return render_template('login.htm', form=form, error = error)
+    return render_template('login.htm', form=form, error=error)
 
-@app.route('/makeproject' , methods = ['GET' , 'POST'])
+
+@app.route('/makeproject', methods=['GET', 'POST'])
 @login_required
 def makeproject():
     form = ProjectForm()
     if form.validate_on_submit():
-        project = Project(name = form.name.data,
-                        description = form.description.data,
-                        userid = current_user.id)
+        project = Project(name=form.name.data,
+                          description=form.description.data,
+                          userid=current_user.id)
         db.session.add(project)
         db.session.commit()
         return redirect(url_for('projects'))
-    return render_template('makeproject.htm' , form = form)
+    return render_template('makeproject.htm', form=form)
 
-@app.route('/projects' , methods = ['GET' , 'POST'])
+
+@app.route('/projects', methods=['GET', 'POST'])
 @login_required
 def projects():
-    projects = Project.query.filter_by(userid = current_user.id)
-    return render_template('projects.htm' , projects = projects)
+    projects = Project.query.filter_by(userid=current_user.id)
+    return render_template('projects.htm', projects=projects)
 
 
-@app.route('/maketask/<projectid>' , methods = ['GET' , 'POST'])
+@app.route('/maketask/<projectid>', methods=['GET', 'POST'])
 @login_required
 def maketask(projectid):
     project = Project.query.get_or_404(projectid)
@@ -112,24 +119,26 @@ def maketask(projectid):
         abort(403)
     form = TaskForm()
     if form.validate_on_submit():
-        task = Task(name = form.name.data,
-                    description = form.description.data,
-                    projectid = projectid)
+        task = Task(name=form.name.data,
+                    description=form.description.data,
+                    projectid=projectid)
         project.completed = 'No'
         db.session.add(task)
         db.session.commit()
-        return redirect(url_for('tasks' , projectid = projectid))
-    return render_template('maketask.htm' , form = form)
+        return redirect(url_for('tasks', projectid=projectid))
+    return render_template('maketask.htm', form=form)
 
-@app.route('/tasks/<projectid>' , methods = ['GET' , 'POST'])
+
+@app.route('/tasks/<projectid>', methods=['GET', 'POST'])
 @login_required
 def tasks(projectid):
-    tasks = Task.query.filter_by(projectid = projectid)
+    tasks = Task.query.filter_by(projectid=projectid)
     na = 'No'
     nas = 'NO'
-    return render_template('tasks.htm' , tasks = tasks , projectid = projectid , na = na ,nas = nas)
+    return render_template('tasks.htm', tasks=tasks, projectid=projectid, na=na, nas=nas)
 
-@app.route('/task/<task_id>' , methods = ['GET' , 'POST'])
+
+@app.route('/task/<task_id>', methods=['GET', 'POST'])
 @login_required
 def task(task_id):
     task = Task.query.get(task_id)
@@ -138,12 +147,12 @@ def task(task_id):
         Status = 'Not Completed'
     else:
         Status = 'Completed'
-    return render_template('task.htm' , task = task , Status = Status)
+    return render_template('task.htm', task=task, Status=Status)
 
 
-@app.route('/change/<to>/<task_id>' , methods = ['GET' , 'POST'])
+@app.route('/change/<to>/<task_id>', methods=['GET', 'POST'])
 @login_required
-def change(to , task_id):
+def change(to, task_id):
     a = 1
     task = Task.query.get_or_404(task_id)
     project = Project.query.get(task.projectid)
@@ -160,16 +169,19 @@ def change(to , task_id):
     else:
         project.completed = 'Yes'
         db.session.commit()
-    return redirect(url_for('edit_task' , projectid = project.id))
-@app.route('/del/task/<task_id>/<projectid>' , methods = ['GET' , 'POST'])
+    return redirect(url_for('edit_task', projectid=project.id))
+
+
+@app.route('/del/task/<task_id>/<projectid>', methods=['GET', 'POST'])
 @login_required
-def del_task(task_id , projectid):
+def del_task(task_id, projectid):
     task = Task.query.get(task_id)
     db.session.delete(task)
     db.session.commit()
-    return redirect(url_for('edit_task' , projectid = projectid))
+    return redirect(url_for('edit_task', projectid=projectid))
 
-@app.route('/del/project/<projectid>' , methods = ['GET' , 'POST'])
+
+@app.route('/del/project/<projectid>', methods=['GET', 'POST'])
 @login_required
 def del_project(projectid):
     project = Project.query.get(projectid)
@@ -177,9 +189,11 @@ def del_project(projectid):
     db.session.commit()
     return redirect(url_for('projects'))
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/queryform', methods=['GET', 'POST'])
 @login_required
@@ -200,9 +214,11 @@ def upload_file():
             return redirect(url_for('index'))
     return render_template('query.htm')
 
-@app.route('/uploads', methods = ['GET' , 'POST'])
+
+@app.route('/uploads', methods=['GET', 'POST'])
 def uploaded_file():
-    return send_from_directory('Tool/static/csvs' , 'data.csv')
+    return send_from_directory('Tool/static/csvs', 'data.csv')
+
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)

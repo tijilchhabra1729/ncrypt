@@ -16,16 +16,37 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script>
+
+    $(document).ready(function () {
+      $("a").on('click', function (event) {
+
+        if (this.hash !== "") {
+          event.preventDefault();
+
+          var hash = this.hash;
+
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function () {
+            window.location.hash = hash;
+          });
+        }
+      });
+    });
+
+  </script>
 
 </head>
 
-<body data-spy="scroll" data-target="#navbar" class="font-medium bg-gray-200">
-  <nav class="nav flex flex-wrap items-center justify-between py-4 px-2">
+<body data-spy="scroll" data-target="#navbar" class="font-medium bg-gray-200 ">
+  <nav class="nav flex flex-wrap items-center justify-between py-4 px-2 ">
     <div class="flex flex-no-shrink items-center mr-6  text-grey-darkest">
       <span class=" text-xl tracking-tight font-bold" style="color:#4b4a4a;">Genie</span>
     </div>
@@ -78,11 +99,11 @@
   </nav>
   {%block content%} {%endblock%}
 
-  <div class="container">
-    <div class="row col justify-content-center inset-x-0 bottom-0 object-none object-bottom">
-      <h6> Made with <span style="color:rgb(249, 16, 105);">♥</span> by team XINO
-      </h6>
-    </div>
+  <div>
+    <h6 class="relative inset-x-0 bottom-0 text-center p-4"> Made with <span style="color:rgb(249, 16, 105);">♥</span>
+      by
+      team XINO
+    </h6>
   </div>
 
 </body>

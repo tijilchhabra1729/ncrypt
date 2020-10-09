@@ -10,13 +10,13 @@
         class="max-w-sm rounded overflow-hidden shadow-lg p-10 bg-gray-200">
         <h1 class="head py-4">Register</h1>
         {{form.hidden_tag()}}
-        <div class="group  py-2 px-1">
+        <div class="group">
           {{form.name}}
           <span class="highlight"></span><span class="bar"></span>
           <label>Full Name</label>
         </div>
-        <div class="group py-2 px-1">
-          {{form.email}}<span class="highlight"></span><span class="bar"></span>
+        <div class="group">
+          {{form.email}}<span class=" highlight"></span><span class="bar"></span>
           <label>Email</label>
 
           <small id="emailHelp">We'll never share your email with anyone else.</small>
@@ -24,7 +24,7 @@
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group  py-2 px-1">
+        <div class="group ">
           {{form.username}}<span class="highlight"></span><span class="bar"></span>
           <label>Username</label>
           <small id="emailHelp" class="form-text text-muted">It should be unique</small>
@@ -32,7 +32,7 @@
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group  py-2 px-1">
+        <div class="group ">
           {{form.password}}<span class="highlight"></span><span class="bar"></span>
           <label>Password</label>
           {%if form.password.errors%} {%for error in
@@ -40,7 +40,7 @@
           <small class="text-danger">{{error}}</small>
           {%endfor%} {%endif%}
         </div>
-        <div class="group py-2 px-1">
+        <div class="group ">
           {{form.pass_confirm}} <span class="highlight"></span><span class="bar"></span>
           <label>Re-Enter password</label>{%if
       form.pass_confirm.errors%} {%for error in form.pass_confirm.errors%}

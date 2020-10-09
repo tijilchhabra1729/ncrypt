@@ -12,14 +12,14 @@
   <div class="justify-center flex-wrap flex  w-full md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 ">
     <a href="{{url_for('makeproject')}}"
       class="relative  h-auto border-8 max-w-sm rounded-lg overflow-hidden shadow max-h-full m-2 ">
-      <div class="px-3 py-6 text-center">
+      <div class="m-8 text-center">
         <div class="font-bold text-5xl  text-gray-700 ">Add Project</div>
       </div>
     </a>
     {%for p in projects%}
     <a class="relative  h-auto border-8  max-w-sm rounded-lg shadow overflow-x-scroll m-2"
       href="{{url_for('tasks' , projectid = p.id)}}">
-      <div class="px-6 py-4 row-auto flex-wrap">
+      <div class="p-6 flex-wrap">
         <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">{{p.name}}
           <br><br>
           <p class="text-gray-600 text-base flex-wrap">{{p.description}}</p>
