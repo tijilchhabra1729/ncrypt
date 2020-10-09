@@ -163,7 +163,7 @@ def change(to , task_id):
     return redirect(url_for('edit_task' , projectid = project.id))
 @app.route('/del/task/<task_id>/<projectid>' , methods = ['GET' , 'POST'])
 @login_required
-def del_task(task_id):
+def del_task(task_id , projectid):
     task = Task.query.get(task_id)
     db.session.delete(task)
     db.session.commit()

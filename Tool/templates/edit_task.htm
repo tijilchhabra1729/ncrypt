@@ -54,7 +54,7 @@
             {%endif%}
           </div>
         </div>
-        <a href="{{url_for('del_project' , projectid = projectid)}}
+        <a href="{{url_for('del_task' , projectid = projectid , task_id = p.id)}}
         " class="mb-3 mx-3 mt-2 top-0 right-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-500
         text-white ">
           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
