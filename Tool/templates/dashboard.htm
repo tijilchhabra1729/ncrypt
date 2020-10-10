@@ -1,4 +1,22 @@
 {%extends 'base.htm'%}
-
 {%block content%}
+
+<form method="POST" class="max-w-sm rounded overflow-hidden shadow-lg p-10 bg-gray-200">
+  <h1 class="head">Table Name</h1>
+  <br>
+  {{form.hidden_tag()}}
+  <div class="group">
+    <small class="text-danger"></small>
+    {{form.table_name}}<span class="highlight"></span><span class="bar"></span>
+
+
+<form method="POST" action="/dashboard">
+  {% for data in data_lines %}
+      <li><label>{{data[0]}}</label>  <label>{{data[1]}}</label> <input type="checkbox" name="column_name" value="{{data}}"></li>
+        <input type="text" name="filter_value">
+  {% endfor %}
+
+<input type="submit">
+
+</form>
 {%endblock%}
