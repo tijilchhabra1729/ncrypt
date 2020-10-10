@@ -169,7 +169,7 @@ def change(to, task_id):
     else:
         project.completed = 'Yes'
         db.session.commit()
-    return redirect(url_for('edit_task', projectid=project.id))
+    return redirect(url_for('tasks', projectid=project.id))
 
 
 @app.route('/del/task/<task_id>/<projectid>', methods=['GET', 'POST'])

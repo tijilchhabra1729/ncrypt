@@ -37,12 +37,10 @@
           <p class="text-gray-600 text-base ">{{p.description}}</p>
           <br>
           </a>
-          {%p.completed == na or p.completed == nas%}
-          <select class="appearance-none">
-            <option><a href="{{url_for('change' , to = 'No' , task_id = p.id)}}">Yes</a></option>
-            <option><a href="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</a></option>
-            {%endif%}
-            <option>Maybe</option>
+          <select id = 'status' onchange="location = this.value;" class="appearance-none">
+            <option value="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Yes</option>
+            <option  value="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</option>
+            <option value="{{url_for('change' , to = 'Maybe' , task_id = p.id)}}">Maybe</option>
             {%endfor%}
           </select>
 
@@ -53,7 +51,7 @@
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg></a>
-           
+
             <a href="" class="hover:text-teal-600">
               Status : <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
