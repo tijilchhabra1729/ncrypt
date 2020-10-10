@@ -43,3 +43,6 @@ class QueryForm(FlaskForm):
     data_input = FileField('Data', validators=[
                            FileAllowed(['csv']), DataRequired()])
     submit = SubmitField('Upload Data')
+class QueryReq(FlaskForm):
+    table_name = StringField('Table Name', validators=[DataRequired()])
+    submit = SubmitField('Submit')

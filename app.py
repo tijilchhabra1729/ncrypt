@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -20,7 +20,26 @@ def index():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template("dashboard.htm")
+    mystr = "SELECT "
+    form = QueryReq()
+    if form.validate_on_submit():
+        table_name = form.table_name.data
+    data = open('Tool/static/csvs/data.csv', encoding='utf-8')
+    csv_data = csv.reader(data)
+    data_lines = list(csv_data)
+    if request.method == 'POST':
+        filter_list = request.form.getlist("filter_value")
+        column_list = request.form.getlist("column_name")
+        filter_list = [i for i in filter_list if i]
+        for sublist in column_list:
+            mylist = sublist.split(',')
+            data = mylist[0]
+            mydata = data[2:-1]
+            mystr = mystr + mydata + ','
+        mystr = mystr[:-1]
+        mystr = mystr + " FROM " + table_name
+        return mystr
+    return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
 
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
