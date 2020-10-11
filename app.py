@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq , UpdateTask
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -213,14 +213,16 @@ def del_project(projectid):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-@app.route('/<task_id>/update' , methods = ['GET' , 'POST'])
+
+
+@app.route('/<task_id>/update', methods=['GET', 'POST'])
 @login_required
 def update(task_id):
     task = Task.query.get(task_id)
     form = UpdateTask()
     if task is None:
         abort(404)
-    elif  current_user.id != task.project.user.id:
+    elif current_user.id != task.project.user.id:
         abort(403)
     else:
         if form.validate_on_submit():
@@ -230,12 +232,13 @@ def update(task_id):
             db.session.commit()
             flash('Task updated')
             db.session.commit()
-            return redirect(url_for('edit_task' , projectid = task.project.id))
+            return redirect(url_for('edit_task', projectid=task.project.id))
         elif request.method == 'GET':
-             form.name.data = task.name
-             form.description.data = task.description
-             form.status.data = task.completed
-        return render_template('update.htm' , form = form , task_id = task_id , projectid = task.project.id)
+            form.name.data = task.name
+            form.description.data = task.description
+            form.status.data = task.completed
+        return render_template('update.htm', form=form, task_id=task_id, projectid=task.project.id)
+
 
 @app.route('/queryform', methods=['GET', 'POST'])
 @login_required
