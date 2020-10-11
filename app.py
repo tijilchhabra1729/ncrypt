@@ -8,6 +8,7 @@ from picture_handler import add_profile_pic
 from sqlalchemy import desc, asc
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+import csv
 
 ALLOWED_EXTENSIONS = {'csv'}
 
