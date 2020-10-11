@@ -1,0 +1,67 @@
+{%extends "base.htm"%}
+{%block content%}
+<br><br><br><br><br><br>
+<div class="container jumbotron" id="account">
+  <div class="container " align ="center">
+    <form method="POST" action = "" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <div class="form-group">
+          {{form.name.label(class="form-group")}}
+          {{form.name(class="form-control col-md-6")}}
+          {%if form.name.errors%}
+            {%for error in form.name.errors%}
+              <small class = 'text-danger'>{{error}}</small>
+            {%endfor%}
+          {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.description.label(class="form-group")}}
+        {{form.description(class="form-control col-md-6")}}
+        {%if form.description.errors%}
+          {%for error in form.description.errors%}
+            <small class = 'text-danger'>{{error}}</small>
+          {%endfor%}
+        {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.status.label(class="form-group")}}
+        {{form.status(class = "rent")}}
+        {%if form.status.errors%}
+          {%for error in form.status.errors%}
+            <small class = 'text-danger'>{{error}}</small>
+          {%endfor%}
+        {%endif%}
+      </div>
+      <div class="form-group">
+        {{form.submit(class = 'btn btn-primary')}}
+        <button type="button" class = "btn btn-danger" data-toggle = 'modal' data-target = "#del">Delete</button>
+        <div class="modal" tabindex="-1" role="dialog" id = "del">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Delete task!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+        <div class="modal-body">
+          <p class = "rent">This process is irrevesible</p>
+        </div>
+        <div class="modal-footer">
+          <a class = "btn btn-danger" href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}"> Delete</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+
+
+
+{%endblock%}

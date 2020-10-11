@@ -46,3 +46,9 @@ class QueryForm(FlaskForm):
 class QueryReq(FlaskForm):
     table_name = StringField('Table Name', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class UpdateTask(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    status = RadioField('Status', choices=[('Yes','completed'),('No','not completed') , ('Maybe' , 'In progress')])
+    submit = SubmitField('Update')
