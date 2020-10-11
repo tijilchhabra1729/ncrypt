@@ -37,11 +37,18 @@
           <p class="text-gray-600 text-base ">{{p.description}}</p>
           <br>
           </a>
-          <select id='status' onchange="javascript:handleSelect(this)" class="appearance-none">
-            <option value="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Yes</option>
-            <option value="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</option>
-            <option value="{{url_for('change' , to = 'Maybe' , task_id = p.id)}}">Maybe</option>
-            {%endfor%}
+          {%if p.completed == na or p.completed == nas%}
+          <a href="{{url_for('change' , to = 'Maybe' , task_id = p.id)}}" class=" hover:text-teal-600">Status
+            : Not started</a>
+          {%elif p.completed == 'Maybe'%}
+          <a href="{{url_for('change' , to = 'Yes' , task_id = p.id)}}" class=" hover:text-teal-600">
+            Status : In progress </a>
+          {%else%}
+          <a href="{{url_for('change' , to = 'No' , task_id = p.id)}}" class="hover:text-teal-600">
+            Status : Completed</a>
+
+          {%endif%}
+          {%endfor%}
           </select>
 
           <div>
