@@ -46,9 +46,8 @@ $(document).ready(function ($) {
 
 });
 
-function handleSelect(elm)
-{
-window.location = elm.value;
+function handleSelect(elm) {
+    window.location = elm.value;
 }
 
 console.log('Xino <3 Ncrypt')
