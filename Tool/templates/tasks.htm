@@ -37,9 +37,9 @@
           <p class="text-gray-600 text-base ">{{p.description}}</p>
           <br>
           </a>
-          <select id = 'status' onchange="location = this.value;" class="appearance-none">
+          <select id='status' onchange="javascript:handleSelect(this)" class="appearance-none">
             <option value="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Yes</option>
-            <option  value="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</option>
+            <option value="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</option>
             <option value="{{url_for('change' , to = 'Maybe' , task_id = p.id)}}">Maybe</option>
             {%endfor%}
           </select>
@@ -65,6 +65,10 @@
 
     </div>
   </div>
-
+  <script type="text/javascript">
+    function handleSelect(elm) {
+      window.location = elm.value;
+    }
+  </script>
 
   {%endblock%}
