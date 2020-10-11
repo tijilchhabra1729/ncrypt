@@ -13,6 +13,7 @@ a{
   text-decoration: none !important;
 }
 .overflow-x-scroll::-webkit-scrollbar {
+  height: 4px;
   /* width: 4px; */
   opacity:0;
 } 
@@ -134,18 +135,12 @@ input::-webkit-file-upload-button {
   body{
   		padding:0 60px;
   }
-  .hell{
-    top: 25vh;
-  }
 }
 
 
 @media screen and (max-width: 600px) {
   body{
   		padding:0 40px;
-  }
-  .hell{
-    top: -30vh;
   }
 }
 
