@@ -37,19 +37,13 @@
           <p class="text-gray-600 text-base ">{{p.description}}</p>
           <br>
           </a>
-<<<<<<< HEAD
-=======
-          <select id='status' onchange="javascript:handleSelect(this)" class="appearance-none">
-            <option value="{{url_for('change' , to = 'Yes' , task_id = p.id)}}">Yes</option>
-            <option value="{{url_for('change' , to = 'No' , task_id = p.id)}}">No</option>
-            <option value="{{url_for('change' , to = 'Maybe' , task_id = p.id)}}">Maybe</option>
->>>>>>> 9be13a4338c981199a7045e7c4bde7a7be186fa5
+          <a href="" class=" hover:text-teal-600">Status
+              {{p.completed}}
             {%endfor%}
 
           <div>
 
-            <a href="" class=" hover:text-teal-600">Status
-                {{p.completed}}
+
 
           </div>
         </div>
