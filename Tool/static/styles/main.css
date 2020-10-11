@@ -13,9 +13,12 @@ a{
   text-decoration: none !important;
 }
 .overflow-x-scroll::-webkit-scrollbar {
+<<<<<<< Updated upstream
   height: 4px;
   /* width: 4px; */
   opacity:0;
+=======
+>>>>>>> Stashed changes
   margin:5px;
   width: 4px;
   height: 5px;

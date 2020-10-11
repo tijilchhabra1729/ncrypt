@@ -46,8 +46,11 @@ $(document).ready(function ($) {
 
 });
 
+<<<<<<< Updated upstream
 function handleSelect(elm) {
     window.location = elm.value;
 }
+=======
+>>>>>>> Stashed changes
 
 console.log('Xino <3 Ncrypt')
