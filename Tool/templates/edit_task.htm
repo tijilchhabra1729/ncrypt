@@ -72,10 +72,7 @@
             </button>
           </div>
 
-
-
-
-          <div class="modal" tabindex="-1" role="dialog" id="del">
+          <!-- <div class="modal" tabindex="-1" role="dialog" id="del">
             <div class="modal-dialog bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="document">
               <h5 class="modal-title font-bold ">Delete task!!!</h5>
               <button type="button" data-dismiss="modal" aria-label="Close">
@@ -90,35 +87,36 @@
               <div>
                 <p class="mb-10">This process is irrevesible</p>
               </div>
-              <a class="bg-red-500 appearance-none outline-none hover:bg-red-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded"
-                href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}">
-                Delete</a>
-            </div>
-          </div>
-
-
-
-
-          <div class="modal" tabindex="-1" role="dialog" id="del">
-            <div class="modal-dialog bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="document">
-              <h5 class="modal-title font-bold ">Delete task!!!</h5>
-              <button type="button" data-dismiss="modal" aria-label="Close">
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3" aria-hidden="true">
-                  <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20">
-                    <path
-                      d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-                  </svg>
-                </span>
-              </button>
-              <div>
-                <p class="mb-10">This process is irrevesible</p>
+              <div class="modal-footer">
+                <a class = "btn btn-danger"
+                  href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}">
+                  Delete</a>
               </div>
-              <a href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}"
-                class="bg-red-500 appearance-none outline-none hover:bg-red-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded">
-                Delete</a>
+
             </div>
+          </div> -->
+
+
+          <div class="modal" tabindex="-1" role="dialog" id = "del">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Delete task!!!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+          <div class="modal-body">
+            <p >This process is irrevesible</p>
           </div>
+          <div class="modal-footer">
+            <a class = "btn btn-danger" href="{{url_for('del_task' , task_id = p.id , projectid = projectid)}}"> Delete</a>
+            <button type="button" class="btn btn-secondary bg-gray-500 appearance-none outline-none hover:bg-gray-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
         </div>
 
       </div>
