@@ -164,7 +164,7 @@ def task(task_id):
     task = Task.query.get(task_id)
     print(task_id)
     if task.completed == 'No':
-        Status = 'Not Completed'
+        Status = 'Not started'
     else:
         Status = 'Completed'
     return render_template('task.htm', task=task, Status=Status)

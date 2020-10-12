@@ -1,41 +1,54 @@
 {%extends "base.htm"%}
 {%block content%}
-<br><br><br><br><br><br>
-<div class="container jumbotron" id="account">
-  <div class="container " align ="center">
-    <form method="POST" action = "" enctype="multipart/form-data">
+<div class="container" id="account">
+  <div class="row justify-content-center  ">
+    <form method="POST" action="" enctype="multipart/form-data"
+      class="md:w-2/4 w-3/4 max-w-md rounded overflow-hidden shadow-lg p-10 m-4 bg-gray-200">
+      <h1 class="text-5xl font-extrabold text-medium py-2">Edit Task </h1><br>
       {{form.hidden_tag()}}
-      <div class="form-group">
-          {{form.name.label(class="form-group")}}
-          {{form.name(class="form-control col-md-6")}}
-          {%if form.name.errors%}
-            {%for error in form.name.errors%}
-              <small class = 'text-danger'>{{error}}</small>
-            {%endfor%}
-          {%endif%}
+      <div class="py-4">
+        <div>
+          <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
+            Task Name
+          </label>
+        </div>
+        {{form.name(class="bg-gray-400 appearance-none font-medium border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
+        leading-tight focus:outline-none focus:bg-white focus:border-teal-500 ", maxlength="100")}}
+        {%if form.name.errors%}
+        {%for error in form.name.errors%}
+        <small class='text-danger'>{{error}}</small>
+        {%endfor%}
+        {%endif%}
       </div>
-      <div class="form-group">
-        {{form.description.label(class="form-group")}}
-        {{form.description(class="form-control col-md-6")}}
+      <div class="pb-6">
+        <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
+          Task Description
+        </label>
+        {{form.description(class="bg-gray-400 resize-none appearance-none font-medium border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
+        leading-tight focus:outline-none focus:bg-white focus:border-teal-500", maxlength="300", rows="10")}}
         {%if form.description.errors%}
-          {%for error in form.description.errors%}
-            <small class = 'text-danger'>{{error}}</small>
-          {%endfor%}
+        {%for error in form.description.errors%}
+        <small class='text-danger'>{{error}}</small>
+        {%endfor%}
         {%endif%}
       </div>
-      <div class="form-group">
-        {{form.status.label(class="form-group")}}
-        {{form.status(class = "rent")}}
+      <!-- <div class="py-4">
+        <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
+          Status
+        </label>
+        {{form.status(class="mr-2 leading-tight")}}
         {%if form.status.errors%}
-          {%for error in form.status.errors%}
-            <small class = 'text-danger'>{{error}}</small>
-          {%endfor%}
+        {%for error in form.status.errors%}
+        <small class='text-danger'>{{error}}</small>
+        {%endfor%}
         {%endif%}
-      </div>
+      </div> -->
       <div class="form-group">
-        {{form.submit(class = 'btn btn-primary')}}
-        <button type="button" class = "btn btn-danger" data-toggle = 'modal' data-target = "#del">Delete</button>
-        <div class="modal" tabindex="-1" role="dialog" id = "del">
+        {{form.submit(class =" bg-teal-500 appearance-none outline-none hover:bg-teal-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded")}}
+        <button type="button"
+          class=" bg-red-500 appearance-none outline-none hover:bg-red-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded"
+          data-toggle='modal' data-target="#del">Delete</button>
+        <div class="modal" tabindex="-1" role="dialog" id="del">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -44,16 +57,17 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-        <div class="modal-body">
-          <p class = "rent">This process is irrevesible</p>
+              <div class="modal-body">
+                <p class="rent">This process is irrevesible</p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-danger" href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}">
+                  Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <a class = "btn btn-danger" href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}"> Delete</a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
       </div>
     </form>
 
