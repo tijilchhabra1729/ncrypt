@@ -40,7 +40,7 @@ def dashboard():
                 mystr = mystr + mydata + ','
             mystr = mystr[:-1]
             mystr = mystr + " FROM " + table_name
-            return mystr
+            flash(mystr)
     except:
         return redirect(url_for('upload_file'))
     return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
@@ -109,7 +109,6 @@ def login():
         if user is not None and user.check_password(form.password.data):
 
             login_user(user)
-            flash('Log in Success!')
 
             next = request.args.get('next')
             if next == None or not next[0] == '/':
@@ -247,8 +246,6 @@ def update(task_id):
         task.description = form.description.data
         task.completed = form.status.data
         db.session.commit()
-        flash('Task updated')
-        db.session.commit()
         return redirect(url_for('edit_task', projectid=task.project.id))
     elif request.method == 'GET':
         form.name.data = task.name
@@ -263,11 +260,9 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             file.save('Tool/static/csvs/' + current_user.username + '.csv')
