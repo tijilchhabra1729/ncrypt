@@ -1,80 +1,48 @@
 {%extends 'dashboard.htm'%}
 {%block content%}
 
-<div class="task">
-  <!-- <a href="{{url_for('maketask' , projectid = projectid)}}">
-      <div id="add-task" class="box">
-        Add task</div>
-    </a> -->
 
-  <div class="container">
-
-    <a href="{{url_for('edit_task' , projectid = projectid)}}"
-      class="m-3 fixed bottom-0 right-0  flex items-center justify-center h-12 w-12 rounded-full bg-teal-500 text-white">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-      </svg>
+<div class="container flex flex-wrap w-full font-medium mx-auto row-auto p-6 xl:px-64 lg:px-32 md:px-24 sm:px-40 ">
+  <a href="{{url_for('edit_task' , projectid = projectid)}}"
+    class=" m-3 fixed bottom-0 right-0 flex items-center justify-center h-12 w-12 rounded-full bg-teal-500 text-white">
+    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+    </svg>
+  </a>
+  <div class="justify-center flex-wrap flex  w-full md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 ">
+    <a href="{{url_for('maketask' , projectid = projectid)}}"
+      class="relative w-full h-auto border-8 max-w-full rounded-xl overflow-hidden shadow max-h-full m-2 ">
+      <div class="p-8 items-center">
+        <div class="font-bold text-5xl  text-gray-700 text-center">Add task</div>
+      </div>
     </a>
-  </div>
-  <div class="container font-medium mx-auto  p-6 xl:px-64 lg:px-32 md:px-24 sm:px-40 ">
-    <div class="justify-center flex-wrap w-full flex  md:pl-3 md:pr-0 pt-8 pb-0 md:pb-6 px-2 ">
-      <a href="{{url_for('maketask' , projectid = projectid)}}"
-        class="max-w-sm rounded-lg overflow-hidden shadow max-h-full m-2 ">
-        <div class="px-3 py-6 text-center">
-          <div class="font-bold text-5xl  text-gray-700 ">Add task</div>
+    {%for p in tasks%}
+    <div class="relative  h-auto border-8  max-w-sm rounded-xl shadow overflow-x-scroll m-2 ">
+      <div class="px-6 py-4 flex-wrap">
+        <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">
+          <h6>{{p.name}}</h6>
         </div>
-      </a>
-
-      {%for p in tasks%}
-
-      <div class="max-w-sm rounded-lg overflow-y-scroll shadow max-h-full m-2 ">
-        <div class="px-6 py-4 row-auto flex-wrap">
-          <div class=" font-bold text-xl mb-2 pr-4 text-gray-700">
-            <h6>{{p.name}}</h6>
-          </div>
-          <br>
-          <p class="text-gray-600 text-base ">{{p.description}}</p>
-          <br>
-          </a>
+        <br>
+        <p class="text-gray-600 text-base ">{{p.description}}</p>
+        <br>
+        <p>
           {%if p.completed == na or p.completed == nas%}
-            Status
-            : Not started
+          Status
+          : Not started
           {%elif p.completed == 'Maybe'%}
-            Status : In progress
+          Status : In progress
           {%else%}
-            Status : Completed
+          Status : Completed
 
           {%endif%}
+        </p>
 
-          {%endfor%}
-          </select>
-
-          <div>
-
-            <!-- <a href="" class=" hover:text-teal-600">Status
-              : <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current text-red-500 " fill="none"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg></a>
-
-            <a href="" class="hover:text-teal-600">
-              Status : <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg></a> -->
-
-
-          </div>
-        </div>
       </div>
-
     </div>
+    {%endfor%}
   </div>
-  <script type="text/javascript">
-    function handleSelect(elm) {
-      window.location = elm.value;
-    }
-  </script>
+</div>
 
-  {%endblock%}
+
+{%endblock%}
