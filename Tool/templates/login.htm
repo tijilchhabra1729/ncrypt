@@ -33,8 +33,8 @@
         </div>
 
 
-        {%if form.password.errors%} {%for error in
-        form.password.errors%}
+        {%if form.password.errors%}
+        {%for error in form.password.errors%}
         <small class="text-red-500 text-xs ">{{error}}</small>
         {%endfor%} {%endif%}
       </div>

@@ -39,7 +39,7 @@ def dashboard():
             mystr = mystr + mydata + ','
         mystr = mystr[:-1]
         mystr = mystr + " FROM " + table_name
-        return mystr
+
     return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
 
 
