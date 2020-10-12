@@ -21,25 +21,28 @@ def index():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    mystr = "SELECT "
-    form = QueryReq()
-    if form.validate_on_submit():
-        table_name = form.table_name.data
-    data = open('Tool/static/csvs/data.csv', encoding='utf-8')
-    csv_data = csv.reader(data)
-    data_lines = list(csv_data)
-    if request.method == 'POST':
-        filter_list = request.form.getlist("filter_value")
-        column_list = request.form.getlist("column_name")
-        filter_list = [i for i in filter_list if i]
-        for sublist in column_list:
-            mylist = sublist.split(',')
-            data = mylist[0]
-            mydata = data[2:-1]
-            mystr = mystr + mydata + ','
-        mystr = mystr[:-1]
-        mystr = mystr + " FROM " + table_name
-
+    try:
+        mystr = "SELECT "
+        form = QueryReq()
+        if form.validate_on_submit():
+            table_name = form.table_name.data
+        data = open('Tool/static/csvs/' + current_user.username + '.csv', encoding='utf-8')
+        csv_data = csv.reader(data)
+        data_lines = list(csv_data)
+        if request.method == 'POST':
+            filter_list = request.form.getlist("filter_value")
+            column_list = request.form.getlist("column_name")
+            filter_list = [i for i in filter_list if i]
+            for sublist in column_list:
+                mylist = sublist.split(',')
+                data = mylist[0]
+                mydata = data[2:-1]
+                mystr = mystr + mydata + ','
+            mystr = mystr[:-1]
+            mystr = mystr + " FROM " + table_name
+            return mystr
+    except:
+        return redirect(url_for('upload_file'))
     return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
 
 
@@ -70,6 +73,7 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
+
         if form.picture.data is not None:
             id = user.id
             pic = add_profile_pic(form.picture.data, id)
@@ -218,26 +222,23 @@ def allowed_file(filename):
 @app.route('/<task_id>/update', methods=['GET', 'POST'])
 @login_required
 def update(task_id):
-    task = Task.query.get(task_id)
+    task = Task.query.get_or_404(task_id)
     form = UpdateTask()
-    if task is None:
-        abort(404)
-    elif current_user.id != task.project.user.id:
-        abort(403)
-    else:
-        if form.validate_on_submit():
-            task.name = form.name.data
-            task.description = form.description.data
-            task.completed = form.status.data
-            db.session.commit()
-            flash('Task updated')
-            db.session.commit()
-            return redirect(url_for('edit_task', projectid=task.project.id))
-        elif request.method == 'GET':
-            form.name.data = task.name
-            form.description.data = task.description
-            form.status.data = task.completed
-        return render_template('update.htm', form=form, task_id=task_id, projectid=task.project.id)
+    print('noob')
+    if form.validate_on_submit():
+        print('op')
+        task.name = form.name.data
+        task.description = form.description.data
+        task.completed = form.status.data
+        db.session.commit()
+        flash('Task updated')
+        db.session.commit()
+        return redirect(url_for('edit_task', projectid=task.project.id))
+    elif request.method == 'GET':
+        form.name.data = task.name
+        form.description.data = task.description
+        form.status.data = task.completed
+    return render_template('update.htm', form=form, task_id=task_id, projectid=task.project.id)
 
 
 @app.route('/queryform', methods=['GET', 'POST'])
@@ -249,20 +250,16 @@ def upload_file():
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            file.save('Tool/static/csvs/data.csv')
-            return redirect(url_for('index'))
+            file.save('Tool/static/csvs/' + current_user.username + '.csv')
+            return redirect(url_for('dashboard'))
     return render_template('query.htm')
 
 
-@app.route('/uploads', methods=['GET', 'POST'])
-def uploaded_file():
-    return send_from_directory('Tool/static/csvs', 'data.csv')
+
 
 
 if __name__ == '__main__':
