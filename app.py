@@ -18,7 +18,7 @@ def index():
     return render_template("index.htm")
 
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/generator', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     try:
@@ -52,14 +52,22 @@ def edit_task(projectid):
     tasks = Task.query.filter_by(projectid=projectid)
     na = 'No'
     nas = 'NO'
-    return render_template("edit_task.htm", tasks=tasks, projectid=projectid, na=na, nas=nas)
+    taskss = []
+    for task in tasks:
+        taskss.append(task)
+    taskss.reverse()
+    return render_template("edit_task.htm", tasks=taskss, projectid=projectid, na=na, nas=nas)
 
 
 @app.route('/edit_project', methods=['GET', 'POST'])
 @login_required
 def edit_project():
     projects = Project.query.filter_by(userid=current_user.id)
-    return render_template('edit_project.htm', projects=projects)
+    projectss = []
+    for project in projects:
+        projectss.append(project)
+    projectss.reverse()
+    return render_template('edit_project.htm', projects=projectss)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -132,7 +140,11 @@ def makeproject():
 @login_required
 def projects():
     projects = Project.query.filter_by(userid=current_user.id)
-    return render_template('projects.htm', projects=projects)
+    projectss = []
+    for project in projects:
+        projectss.append(project)
+    projectss.reverse()
+    return render_template('projects.htm', projects=projectss)
 
 
 @app.route('/maketask/<projectid>', methods=['GET', 'POST'])
@@ -157,9 +169,13 @@ def maketask(projectid):
 @login_required
 def tasks(projectid):
     tasks = Task.query.filter_by(projectid=projectid)
+    taskss = []
+    for task in tasks:
+        taskss.append(task)
+    taskss.reverse()
     na = 'No'
     nas = 'NO'
-    return render_template('tasks.htm', tasks=tasks, projectid=projectid, na=na, nas=nas)
+    return render_template('tasks.htm', tasks=taskss, projectid=projectid, na=na, nas=nas)
 
 
 @app.route('/task/<task_id>', methods=['GET', 'POST'])
