@@ -32,7 +32,7 @@
         {%endfor%}
         {%endif%}
       </div>
-      <!-- <div class="py-4">
+      <div class="py-4">
         <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
           Status
         </label>
@@ -42,31 +42,10 @@
         <small class='text-danger'>{{error}}</small>
         {%endfor%}
         {%endif%}
-      </div> -->
+      </div>
       <div>
         {{form.submit(class =" bg-teal-500 appearance-none outline-none hover:bg-teal-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded")}}
-        <button type="button"
-          class=" bg-red-500 appearance-none outline-none hover:bg-red-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded"
-          data-toggle='modal' data-target="#del">Delete</button>
-          <div class="modal" tabindex="-1" role="dialog" id = "del">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Delete task!!!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-          <div class="modal-body">
-            <p >This process is irrevesible</p>
-          </div>
-          <div class="modal-footer">
-            <a class = "btn btn-danger" href="{{url_for('del_task' , task_id = task_id , projectid = projectid)}}"> Delete</a>
-            <button type="button" class="btn btn-secondary bg-gray-500 appearance-none outline-none hover:bg-gray-400  focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <a type = 'button' href="{{url_for('edit_task' , projectid = projectid)}}">Cancel</a>
       </div>
   </div>
 </div>
