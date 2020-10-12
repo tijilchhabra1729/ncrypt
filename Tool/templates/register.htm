@@ -89,28 +89,9 @@
         <small class="text-red-500 text-xs ">{{error}}</small>
         {%endfor%} {%endif%}
       </div>
-      <div class="my-4">
-        <div>
-          <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide" for="inline-full-name">
-            Upload Picture
-          </label>
-        </div>
-        <div>
-          <div class="fileUpload width100 bg-gray-400 appearance-none font-medium border-2 border-gray-200 rounded w-full p-2 text-gray-700
-          leading-tight text-left uploadlogo focus:outline-none focus:bg-white focus:border-teal-500">
-            <span>Nothing uploaded</span>
-            {{form.picture(class="uploadlogo")}}
-          </div>
-
-
-          {%if form.picture.errors%} {%for error in form.picture.errors%}
-          <small class="text-red-500 text-xs ">{{error}}</small>
-          {%endfor%} {%endif%}
-        </div>
-
-        <div>
-          {{form.submit(class =" bg-teal-500 appearance-none outline-none hover:bg-teal-400 my-4 focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded")}}
-        </div>
+      <div>
+        {{form.submit(class =" bg-teal-500 appearance-none outline-none hover:bg-teal-400 my-4 focus:shadow-outline focus:outline-none text-white  py-2 px-4 rounded")}}
+      </div>
 
 
     </form>
