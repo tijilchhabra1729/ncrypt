@@ -40,7 +40,7 @@ $(document).ready(function ($) {
             return "Uploaded file : " + filename;
         } else {
             $(input).val("");
-            return "Only image/pdf/ formats are allowed!";
+            return "Only image/pdf/csv formats are allowed!";
         }
     }
 
