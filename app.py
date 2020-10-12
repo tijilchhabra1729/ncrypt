@@ -255,7 +255,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             file.save('Tool/static/csvs/' + current_user.username + '.csv')
-            return redirect(url_for('index'))
+            return redirect(url_for('dashboard'))
     return render_template('query.htm')
 
 

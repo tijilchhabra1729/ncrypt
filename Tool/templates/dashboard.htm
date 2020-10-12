@@ -2,6 +2,7 @@
 {%block content%}
 
 <form method="POST" class="md:w-2/4 w-3/4 rounded-lg overflow-hidden shadow-lg p-10 bg-gray-200">
+  <a href="{{url_for('upload_file')}}">upload new csv</a>
   <h1 class="text-5xl font-extrabold text-medium py-2">Table Name</h1>
   <br>
   {{form.hidden_tag()}}
