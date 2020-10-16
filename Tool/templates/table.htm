@@ -1,0 +1,52 @@
+{%extends 'base.htm'%}
+{%block content%}
+      <div class="row justify-content-center ">
+        <form method="POST" class="md:w-2/4 w-3/4 rounded-lg overflow-hidden shadow-lg  p-6 bg-gray-200">
+          <h1 class=" text-4xl sm:text-5xl font-extrabold text-medium py-2">SQL Generator</h1>
+          <br>
+          {{form.hidden_tag()}}
+          <div class="my-4">
+            <div class="w-2/3">
+              <label class="block text-gray-500 font-bold text-left mb-1 md:mb-0 pr-2 tracking-wide">
+                Table name
+              </label>
+            </div>
+            <div>
+              <small class="text-danger"></small>
+              {{form.table_name(class="bg-gray-400 appearance-none font-medium border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
+           leading-tight focus:outline-none focus:bg-white focus:border-teal-500")}}
+            </div>
+
+            <form method="POST" action="/dashboard">
+              <input type="submit"
+                class=" bg-teal-500 appearance-none outline-none hover:bg-teal-400 my-4 focus:shadow-outline focus:outline-none text-white  py-2 px-4 mr-4 rounded">
+              <a href="{{url_for('upload_file')}}">Upload a new csv</a>
+
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <div
+                class="alert alert-success select-all bg-teal-500 bg-opacity-50 py-4 lg:px-4  text-white alert-dismissible fade show"
+                role="alert">
+                <p>
+                  {%for msg in messages.pop()%}
+                  {{msg}} <br>
+                  {%endfor%}
+                </p><span class="text-xs select-none">This is your generated query
+                  (press
+                  anywhere near to
+                  select)</span>
+                <button type="button" class="close select-none" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+
+
+              {% endif %}
+              {% endwith %}
+            </form>
+          </div>
+        </form>
+      </div>
+    </div>
+  {%endblock%}

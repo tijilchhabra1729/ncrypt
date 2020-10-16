@@ -26,7 +26,7 @@ def dashboard():
         form = QueryReq()
         if form.validate_on_submit():
             table_name = form.table_name.data
-        data = open('Tool/static/csvs/' + current_user.username + '.csv', encoding='utf-8')
+        data = open('Tool/static/csvs/' + current_user.username +  '.csv', encoding='utf-8')
         csv_data = csv.reader(data)
         data_lines = list(csv_data)
         if request.method == 'POST':
@@ -44,6 +44,28 @@ def dashboard():
     except:
         return redirect(url_for('upload_file'))
     return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
+
+@app.route('/create/table' , methods = ['GET' , 'POST'])
+@login_required
+def create_table():
+    try:
+        form = QueryReq()
+        if form.validate_on_submit():
+            table_name = form.table_name.data
+            mystr = 'CREATE TABLE '
+            data = open('Tool/static/csvs/' + current_user.username + 'table_create'+ '.csv', encoding='utf-8')
+            csv_data = csv.reader(data)
+            data_lines = list(csv_data)
+            line_one = mystr + table_name + ' ('
+            myquery = [line_one]
+            for v , d in data_lines:
+                myquery.append('    ' + v + d + ',')
+            myquery.append(');')
+            flash(myquery)
+    except:
+        return redirect(url_for('upload_file_create_table'))
+    return render_template("table.htm" , form = form)
+
 
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
@@ -269,6 +291,20 @@ def upload_file():
             return redirect(url_for('dashboard'))
     return render_template('query.htm')
 
+@app.route('/querytableform', methods=['GET', 'POST'])
+@login_required
+def upload_file_create_table():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            file.save('Tool/static/csvs/' + current_user.username + 'table_create' + '.csv')
+            return redirect(url_for('create_table'))
+    return render_template('query.htm')
 
 
 
