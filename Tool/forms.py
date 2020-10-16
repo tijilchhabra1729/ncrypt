@@ -47,6 +47,11 @@ class QueryReq(FlaskForm):
     table_name = StringField('Table Name', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+class QueryReqWhere(FlaskForm):
+    table_name = StringField('Table Name', validators=[DataRequired()])
+    value = StringField('Value', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 class UpdateTask(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])

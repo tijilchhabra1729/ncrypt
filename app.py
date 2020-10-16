@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask , QueryReqWhere
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -66,7 +66,31 @@ def create_table():
         return redirect(url_for('upload_file_create_table'))
     return render_template("table.htm" , form = form)
 
-
+@app.route('/create/where' , methods = ['GET' , 'POST'])
+@login_required
+def create_where():
+    value = ""
+    mystr = "SELECT * FROM "
+    myquery = []
+    form = QueryReqWhere()
+    if form.validate_on_submit():
+        table_name = form.table_name.data
+        value = form.value.data
+        line_one = mystr + table_name
+        myquery = [line_one]
+    data = open('Tool/static/csvs/' + current_user.username + 'where' + '.csv', encoding='utf-8')
+    csv_data = csv.reader(data)
+    data_lines = list(csv_data)
+    if request.method == 'POST':
+        column_list = request.form.get("column_name")
+        column_list = column_list.split(',')
+        data = column_list[0]
+        mydata = data[2:-1]
+        line_two = "WHERE " + mydata + "=" +  value + ";"
+        myquery.append(line_two)
+        flash(myquery)
+        print(column_list)
+    return render_template("where.htm", data_lines=data_lines, form=form, myquery = myquery)
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
 @login_required
@@ -304,6 +328,21 @@ def upload_file_create_table():
         if file and allowed_file(file.filename):
             file.save('Tool/static/csvs/' + current_user.username + 'table_create' + '.csv')
             return redirect(url_for('create_table'))
+    return render_template('query.htm')
+
+@app.route('/querywhereform', methods=['GET', 'POST'])
+@login_required
+def upload_file_create_where():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            file.save('Tool/static/csvs/' + current_user.username + 'where' + '.csv')
+            return redirect(url_for('create_where'))
     return render_template('query.htm')
 
 
