@@ -69,27 +69,33 @@ def create_table():
 @app.route('/create/where' , methods = ['GET' , 'POST'])
 @login_required
 def create_where():
-    value = ""
-    mystr = "SELECT * FROM "
-    myquery = []
-    form = QueryReqWhere()
-    if form.validate_on_submit():
-        table_name = form.table_name.data
-        value = form.value.data
-        line_one = mystr + table_name
-        myquery = [line_one]
-    data = open('Tool/static/csvs/' + current_user.username + 'where' + '.csv', encoding='utf-8')
-    csv_data = csv.reader(data)
-    data_lines = list(csv_data)
-    if request.method == 'POST':
-        column_list = request.form.get("column_name")
-        column_list = column_list.split(',')
-        data = column_list[0]
-        mydata = data[2:-1]
-        line_two = "WHERE " + mydata + "=" +  value + ";"
-        myquery.append(line_two)
-        flash(myquery)
-        print(column_list)
+    try:
+        value = ""
+        mystr = "SELECT * FROM "
+        myquery = []
+        form = QueryReqWhere()
+        if form.validate_on_submit():
+            table_name = form.table_name.data
+            value = form.value.data
+            line_one = mystr + table_name
+            myquery = [line_one]
+        data = open('Tool/static/csvs/' + current_user.username + 'where' + '.csv', encoding='utf-8')
+        csv_data = csv.reader(data)
+        data_lines = list(csv_data)
+        if request.method == 'POST':
+            column_list = request.form.getlist("column_name")
+            for sublist in column_list:
+                mylist = sublist.split(',')
+                data = mylist[0]
+                mydata = data[0:-1]
+                line_two = "WHERE " + mydata + "=" +  value + ";"
+                myquery.append(line_two)
+            flash(myquery)
+            print(data)
+            print(sublist)
+            print(column_list)
+    except:
+        return redirect('upload_file_create_where')
     return render_template("where.htm", data_lines=data_lines, form=form, myquery = myquery)
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
