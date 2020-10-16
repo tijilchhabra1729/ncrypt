@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask , QueryReqWhere
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask, QueryReqWhere
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -26,7 +26,8 @@ def dashboard():
         form = QueryReq()
         if form.validate_on_submit():
             table_name = form.table_name.data
-        data = open('Tool/static/csvs/' + current_user.username +  '.csv', encoding='utf-8')
+        data = open('Tool/static/csvs/' + current_user.username +
+                    '.csv', encoding='utf-8')
         csv_data = csv.reader(data)
         data_lines = list(csv_data)
         if request.method == 'POST':
@@ -45,7 +46,8 @@ def dashboard():
         return redirect(url_for('upload_file'))
     return render_template("dashboard.htm", data_lines=data_lines, form=form, mystr=mystr)
 
-@app.route('/create/table' , methods = ['GET' , 'POST'])
+
+@app.route('/create/table', methods=['GET', 'POST'])
 @login_required
 def create_table():
     try:
@@ -53,20 +55,22 @@ def create_table():
         if form.validate_on_submit():
             table_name = form.table_name.data
             mystr = 'CREATE TABLE '
-            data = open('Tool/static/csvs/' + current_user.username + 'table_create'+ '.csv', encoding='utf-8')
+            data = open('Tool/static/csvs/' + current_user.username +
+                        'table_create' + '.csv', encoding='utf-8')
             csv_data = csv.reader(data)
             data_lines = list(csv_data)
             line_one = mystr + table_name + ' ('
             myquery = [line_one]
-            for v , d in data_lines:
+            for v, d in data_lines:
                 myquery.append('    ' + v + d + ',')
             myquery.append(');')
             flash(myquery)
     except:
         return redirect(url_for('upload_file_create_table'))
-    return render_template("table.htm" , form = form)
+    return render_template("table.htm", form=form)
 
-@app.route('/create/where' , methods = ['GET' , 'POST'])
+
+@app.route('/create/where', methods=['GET', 'POST'])
 @login_required
 def create_where():
     try:
@@ -79,7 +83,8 @@ def create_where():
             value = form.value.data
             line_one = mystr + table_name
             myquery = [line_one]
-        data = open('Tool/static/csvs/' + current_user.username + 'where' + '.csv', encoding='utf-8')
+        data = open('Tool/static/csvs/' + current_user.username +
+                    'where' + '.csv', encoding='utf-8')
         csv_data = csv.reader(data)
         data_lines = list(csv_data)
         if request.method == 'POST':
@@ -88,7 +93,7 @@ def create_where():
                 mylist = sublist.split(',')
                 data = mylist[0]
                 mydata = data[0:-1]
-                line_two = "WHERE " + mydata + "=" +  value + ";"
+                line_two = "WHERE " + mydata + "=" + value + ";"
                 myquery.append(line_two)
             flash(myquery)
             print(data)
@@ -96,7 +101,8 @@ def create_where():
             print(column_list)
     except:
         return redirect('upload_file_create_where')
-    return render_template("where.htm", data_lines=data_lines, form=form, myquery = myquery)
+    return render_template("where.htm", data_lines=data_lines, form=form, myquery=myquery)
+
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
 @login_required
@@ -321,6 +327,7 @@ def upload_file():
             return redirect(url_for('dashboard'))
     return render_template('query.htm')
 
+
 @app.route('/querytableform', methods=['GET', 'POST'])
 @login_required
 def upload_file_create_table():
@@ -332,9 +339,11 @@ def upload_file_create_table():
         if file.filename == '':
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            file.save('Tool/static/csvs/' + current_user.username + 'table_create' + '.csv')
+            file.save('Tool/static/csvs/' + current_user.username +
+                      'table_create' + '.csv')
             return redirect(url_for('create_table'))
     return render_template('query.htm')
+
 
 @app.route('/querywhereform', methods=['GET', 'POST'])
 @login_required
@@ -347,11 +356,10 @@ def upload_file_create_where():
         if file.filename == '':
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            file.save('Tool/static/csvs/' + current_user.username + 'where' + '.csv')
+            file.save('Tool/static/csvs/' +
+                      current_user.username + 'where' + '.csv')
             return redirect(url_for('create_where'))
     return render_template('query.htm')
-
-
 
 
 if __name__ == '__main__':

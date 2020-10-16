@@ -37,7 +37,7 @@ $(document).ready(function ($) {
             var path = $(input).val();
             var filename = path.replace(/^.*\\/, "");
             $('.fileUpload span').html('Uploaded Proof : ' + filename);
-            return "Uploaded file : " + filename;
+            return "Selected file : " + filename;
         } else {
             $(input).val("");
             return "Only image/pdf/csv formats are allowed!";

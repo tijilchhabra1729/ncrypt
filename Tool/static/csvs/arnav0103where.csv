@@ -1,5 +1,40 @@
-PersonID ,int
-LastName ,varchar(255)
-FirstName ,varchar(255)
-Address ,varchar(255)
-City ,varchar(255)
+name,school,position,event
+Anshul Saha,"Amity International School, Sector - 46, Gurgaon",I,Exquisite
+Laxya Pahuja,"Amity International School, Sector - 46, Gurgaon",I,Exquisite
+Rachit Gupta,"Amity International School, Sector - 46, Gurgaon",I,Exquisite
+Aditya Pramar,The Mother's International School,II,Exquisite
+Arhaan Bahadur,The Mother's International School,II,Exquisite
+Siddhayak Goyal ,The Mother's International School,II,Exquisite
+Ishaank Chopra,"Modern School, Barakhamba Road",III,Exquisite
+Kanav Jain,"Modern School, Barakhamba Road",III,Exquisite
+Rohan Bhasin ,"Modern School, Barakhamba Road",III,Exquisite
+ Vedanta Neogi ,"Delhi Public School, Vasant Kunj",I,X-Word
+Shashwat Dash,"Delhi Public School, Vasant Kunj",I,X-Word
+Ribhav Sharma ,"Amity International School, Sector - 46, Gurgaon",II,X-Word
+Mihir Aggarwal,"Amity International School, Sector - 46, Gurgaon",II,X-Word
+Vinayak Pachnanda,"Delhi Public School, RK Puram",III,X-Word
+Shashwat Mundra ,"Delhi Public School, RK Puram",III,X-Word
+Hitarth Khurana,"Delhi Public School, Dwarka",I,Tech Exult
+Rijul Ganju,"Modern School, Barakhamba Road",II,Tech Exult
+ Shreyansh Krishna,"Modern School, Barakhamba Road",III,Tech Exult
+Hitarth Khurana,"Delhi Public School, Dwarka",I,Exclusive
+Alankrita Ghosh,"Delhi Public School, Dwarka",I,Exclusive
+Shashwat Mundra ,"Delhi Public School, RK Puram",II,Exclusive
+ Ishir Bhardwaj,"Delhi Public School, RK Puram",II,Exclusive
+Shashwat Dash ,"Delhi Public School, Vasant Kunj",III,Exclusive
+Medhavi Budhiraja,"Delhi Public School, Vasant Kunj",III,Exclusive
+Shashwat Chandra,"Delhi Public School, RK Puram",I,Execute.exe
+Druhin Lamba,"Delhi Public School, Vasant Kunj",II,Execute.exe
+ Aryan Mehndiratta,"Bal Bharti Public School, Pitampura",III,Execute.exe
+Samriddhi Jain,"Delhi Public School, Sushant Lok",I,Pixels
+Vasu Goyal,"Delhi Public School, Sushant Lok",I,Pixels
+Eshaan Shahji,"Delhi Public School, Bhopal",II,Pixels
+ Kanishk Singh,"Delhi Public School, Bhopal",II,Pixels
+Deepanya Gupta,"Delhi Public School, Vasant Kunj",III,Pixels
+Prakhar Khurana,"Delhi Public School, Vasant Kunj",III,Pixels
+Ishaan Das,"Delhi Public School, Vasant Kunj",I,X-Vision
+Aviral Budhiraja,Cambridge Indirapuram,II,X-Vision
+Ribhav Sharma ,"Amity International School, Sector - 46,Gurgaon",III,X-Vision
+Armaan Agarwal,"Delhi Public School, Vasant Kunj",I,X-86
+ Ayush Gupta,"Amity International School, Mayur Vihar",II,X-86
+Manan Sarna,The Mother’s International School,III,X-86
