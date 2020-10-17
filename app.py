@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask, QueryReqWhere , UpdateQuery
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask, QueryReqWhere, UpdateQuery
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -76,7 +76,7 @@ def create_table():
             flash(myquery)
     except:
         return redirect(url_for('upload_file_create_table'))
-    return render_template("table.htm", form=form , data_lines = data_lines)
+    return render_template("table.htm", form=form, data_lines=data_lines)
 
 
 @app.route('/create/where', methods=['GET', 'POST'])
@@ -114,7 +114,8 @@ def create_where():
         return redirect('upload_file_create_where')
     return render_template("where.htm", data_lines=data_lines, form=form, myquery=myquery)
 
-@app.route('/create/update' ,methods = ['GET' , 'POST'])
+
+@app.route('/create/update', methods=['GET', 'POST'])
 @login_required
 def update_query():
     form = UpdateQuery()
@@ -122,7 +123,7 @@ def update_query():
         table_name = form.table_name.data
         column_name = form.column_name.data
         value = form.changed_val.data
-        query = ["UPDATE " + table_name , "SET " + column_name + " = " + value]
+        query = ["UPDATE " + table_name, "SET " + column_name + " = " + value]
         flash(query)
     return render_template("updatequery.htm", form=form)
 

@@ -1,7 +1,7 @@
 {% extends "base.htm" %} {% block content %}
 <div class="container">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <div class="md:flex flex-col md:flex-row w-full">
+    <div class="md:flex flex-col md:flex-row w-full ">
         <div @click.away="open = false"
             class="flex flex-col w-full md:w-64 text-gray-700 bg-transparent md:fixed dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0"
             x-data="{ open: false }">
@@ -22,24 +22,24 @@
             <nav :class="{'block': open, 'hidden': !open}"
                 class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
                 <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
-                    href="{{url_for('create_table')}}">Create</a>
+                    href="{{url_for('create_table')}}">Create Table</a>
                 <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
                     href="{{url_for('dashboard')}}">Select</a>
                 <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
-                    href="{{url_for('create_where')}}">Where</a>
-                <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 " href="#">Contact</a>
+                    href="{{url_for('update_query')}}">Update</a>
+                <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
+                    href="{{url_for('create_where')}}">Filters</a>
             </nav>
         </div>
-      </nav>
     </div>
     <div class="justify-content-start">
-        <h1 class=" text-gray-800 font-bold  md:ml-40  text-3xl md:text-5xl">How to make the csv</h1>
-        <p class="mt-2 text-lg text-gray-500   md:ml-40  leading-8 ">A CSV is a comma-separated values file is a
+        <h1 class=" text-gray-800 font-bold  md:ml-56  text-3xl md:text-5xl">How to make the csv</h1>
+        <p class="mt-2 text-lg text-gray-500  mr-40 md:ml-56  leading-8 ">A CSV file contains comma-separated data
             delimited text file that uses a comma to separate values. Each line of the file is a data record. Each
             record
             consists
-            of one or more fields, separated by commas. The use of the comma as a field separator is the source of the
-            name for this file format.
+            of one or more fields, separated by commas. The use of the comma as a field separator is the source of
+            the name for this file format.
         </p>
     </div>
 </div>
