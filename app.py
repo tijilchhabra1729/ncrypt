@@ -18,7 +18,13 @@ def index():
     return render_template("index.htm")
 
 
-@app.route('/generator', methods=['GET', 'POST'])
+@app.route('/querygen', methods=['GET', 'POST'])
+@login_required
+def querygen():
+    return render_template("howto.htm")
+
+
+@app.route('/create/select', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     try:
@@ -170,7 +176,7 @@ def login():
 
             next = request.args.get('next')
             if next == None or not next[0] == '/':
-                next = url_for('dashboard')
+                next = url_for('projects')
             return redirect(next)
         elif user is not None and user.check_password(form.password.data) == False:
             error = 'Wrong Password'
