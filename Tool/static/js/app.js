@@ -32,7 +32,7 @@ $(document).ready(function ($) {
         var url = input.value;
         var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
         if (input.files && input.files[0] && (
-            ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "gif" || ext == "pdf" || ext == "csv"
+            ext == "csv"
         )) {
             var path = $(input).val();
             var filename = path.replace(/^.*\\/, "");
@@ -40,7 +40,7 @@ $(document).ready(function ($) {
             return "Selected file : " + filename;
         } else {
             $(input).val("");
-            return "Only image/pdf/csv formats are allowed!";
+            return "Only csv formats are allowed!";
         }
     }
 
