@@ -22,11 +22,11 @@
       </div>
       <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
         <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
-          href="{{url_for('upload_file_create_table')}}">Create</a>
+          href="{{url_for('create_table')}}">Create</a>
         <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
           href="{{url_for('dashboard')}}">Select</a>
         <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 "
-          href="{{url_for('upload_file_create_where')}}">Where</a>
+          href="{{url_for('create_where')}}">Where</a>
         <a class="block md:block px-3 py-3 no-underline text-grey-200 hover:text-teal-500 " href="#">Contact</a>
         <div @click.away="open = false" class="relative" x-data="{ open: false }">
           <button @click="open = !open"
