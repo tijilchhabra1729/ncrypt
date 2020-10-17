@@ -1,6 +1,6 @@
 from Tool import app, db
 import os
-from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask, QueryReqWhere
+from Tool.forms import RegistrationForm, LoginForm, ProjectForm, TaskForm, QueryForm, QueryReq, UpdateTask, QueryReqWhere , UpdateQuery
 from Tool.models import User, Project, Task
 from flask import render_template, request, url_for, redirect, flash, abort
 from flask_login import current_user, login_required, login_user, logout_user
@@ -114,18 +114,16 @@ def create_where():
         return redirect('upload_file_create_where')
     return render_template("where.htm", data_lines=data_lines, form=form, myquery=myquery)
 
-@app.route('/create/update')
+@app.route('/create/update' ,methods = ['GET' , 'POST'])
 @login_required
 def update_query():
-    try:
-        form = UpdateQuery()
-        if form.validate_on_submit():
-            table_name = form.table_name.data
-            column_name = form.column_name.data
-            value = form.changed_val.data
-        query = "UPDATE " + table_name "\n" + "SET " + column_name + " = " + value
-    except:
-        return query
+    form = UpdateQuery()
+    if form.validate_on_submit():
+        table_name = form.table_name.data
+        column_name = form.column_name.data
+        value = form.changed_val.data
+        query = ["UPDATE " + table_name , "SET " + column_name + " = " + value]
+        flash(query)
     return render_template("updatequery.htm", form=form)
 
 

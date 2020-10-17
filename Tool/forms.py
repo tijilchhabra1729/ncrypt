@@ -52,6 +52,12 @@ class QueryReqWhere(FlaskForm):
     value = StringField('Value', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+class UpdateQuery(FlaskForm):
+    table_name = StringField('Table Name', validators=[DataRequired()])
+    column_name = StringField('Column Name' , validators=[DataRequired()])
+    changed_val = StringField('Changed Value' , validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 class UpdateTask(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
