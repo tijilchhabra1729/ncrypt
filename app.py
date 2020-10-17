@@ -109,6 +109,20 @@ def create_where():
         return redirect('upload_file_create_where')
     return render_template("where.htm", data_lines=data_lines, form=form, myquery=myquery)
 
+@app.route('/create/update')
+@login_required
+def update_query():
+    try:
+        form = UpdateQuery()
+        if form.validate_on_submit():
+            table_name = form.table_name.data
+            column_name = form.column_name.data
+            value = form.changed_val.data
+        query = "UPDATE " + table_name "\n" + "SET " + column_name + " = " + value
+    except:
+        return query
+    return render_template("updatequery.htm", form=form)
+
 
 @app.route('/edit_task/<projectid>', methods=['GET', 'POST'])
 @login_required
